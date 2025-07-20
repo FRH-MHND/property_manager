@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: property_manager
+Version: 1.0.0
+Summary: Property management system for rental units with contracts and invoicing
+Author: Farah
+Author-email: farah@domain.com
+Requires-Dist: frappe
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: summary

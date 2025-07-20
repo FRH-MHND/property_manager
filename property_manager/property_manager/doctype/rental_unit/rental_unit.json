@@ -1,0 +1,186 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{property}-{unit_number}",
+ "creation": "2025-07-18 19:45:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "property",
+  "unit_number",
+  "unit_type",
+  "column_break_4",
+  "status",
+  "furnished_status",
+  "square_footage",
+  "section_break_8",
+  "base_rent",
+  "security_deposit",
+  "late_fee_amount",
+  "column_break_12",
+  "bedrooms",
+  "bathrooms",
+  "parking_spaces",
+  "section_break_16",
+  "description",
+  "amenities",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Property",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Unit Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "unit_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Unit Type",
+   "options": "Studio\n1 Bedroom\n2 Bedroom\n3 Bedroom\n4+ Bedroom\nCommercial Space\nStorage Unit\nParking Space",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Available\nOccupied\nMaintenance\nRenovation",
+   "reqd": 1,
+   "default": "Available"
+  },
+  {
+   "fieldname": "furnished_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Furnished Status",
+   "options": "Furnished\nUnfurnished\nPartially Furnished",
+   "reqd": 1
+  },
+  {
+   "fieldname": "square_footage",
+   "fieldtype": "Float",
+   "label": "Square Footage",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break",
+   "label": "Rental Information"
+  },
+  {
+   "fieldname": "base_rent",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Base Rent Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "security_deposit",
+   "fieldtype": "Currency",
+   "label": "Security Deposit"
+  },
+  {
+   "fieldname": "late_fee_amount",
+   "fieldtype": "Currency",
+   "label": "Late Fee Amount"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bedrooms",
+   "fieldtype": "Int",
+   "label": "Bedrooms",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "bathrooms",
+   "fieldtype": "Float",
+   "label": "Bathrooms",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "parking_spaces",
+   "fieldtype": "Int",
+   "label": "Parking Spaces",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "amenities",
+   "fieldtype": "Small Text",
+   "label": "Unit Amenities"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-18 19:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "Property Manager",
+ "name": "Rental Unit",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Property Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
+
