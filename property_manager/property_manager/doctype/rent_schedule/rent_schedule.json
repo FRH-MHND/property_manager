@@ -11,22 +11,39 @@
   "naming_series",
   "rental_contract",
   "tenant",
+  "property",
   "rental_unit",
-  "column_break_5",
+  "column_break_6",
   "due_date",
   "rent_amount",
   "status",
-  "section_break_9",
+  "section_break_10",
   "late_fee_amount",
   "grace_period_days",
-  "payment_date",
-  "column_break_13",
+  "overdue_days",
+  "column_break_14",
   "total_amount_due",
   "amount_paid",
+  "balance_amount",
+  "section_break_18",
+  "payment_date",
+  "payment_method",
+  "payment_reference",
+  "column_break_22",
   "invoice_reference",
-  "section_break_17",
+  "invoice_status",
+  "invoice_date",
+  "section_break_26",
+  "late_fee_applied_date",
+  "waived_late_fee",
+  "waiver_reason",
+  "column_break_30",
+  "reminder_sent_date",
+  "reminder_count",
+  "last_reminder_date",
+  "section_break_34",
   "notes",
-  "payment_method"
+  "internal_notes"
  ],
  "fields": [
   {
@@ -53,6 +70,13 @@
    "reqd": 1
   },
   {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Property",
+   "reqd": 1
+  },
+  {
    "fieldname": "rental_unit",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -61,7 +85,7 @@
    "reqd": 1
   },
   {
-   "fieldname": "column_break_5",
+   "fieldname": "column_break_6",
    "fieldtype": "Column Break"
   },
   {
@@ -83,14 +107,14 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Pending\nPaid\nOverdue\nPartially Paid\nCancelled",
+   "options": "Pending\nPaid\nOverdue\nPartially Paid\nCancelled\nWaived",
    "reqd": 1,
    "default": "Pending"
   },
   {
-   "fieldname": "section_break_9",
+   "fieldname": "section_break_10",
    "fieldtype": "Section Break",
-   "label": "Payment Details"
+   "label": "Late Fee Information"
   },
   {
    "fieldname": "late_fee_amount",
@@ -104,24 +128,60 @@
    "default": "5"
   },
   {
-   "fieldname": "payment_date",
-   "fieldtype": "Date",
-   "label": "Payment Date"
+   "fieldname": "overdue_days",
+   "fieldtype": "Int",
+   "label": "Overdue Days",
+   "read_only": 1,
+   "description": "Days past due date"
   },
   {
-   "fieldname": "column_break_13",
+   "fieldname": "column_break_14",
    "fieldtype": "Column Break"
   },
   {
    "fieldname": "total_amount_due",
    "fieldtype": "Currency",
    "label": "Total Amount Due",
-   "read_only": 1
+   "read_only": 1,
+   "description": "Rent + Late Fees"
   },
   {
    "fieldname": "amount_paid",
    "fieldtype": "Currency",
    "label": "Amount Paid"
+  },
+  {
+   "fieldname": "balance_amount",
+   "fieldtype": "Currency",
+   "label": "Balance Amount",
+   "read_only": 1,
+   "description": "Remaining amount to be paid"
+  },
+  {
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break",
+   "label": "Payment Information"
+  },
+  {
+   "fieldname": "payment_date",
+   "fieldtype": "Date",
+   "label": "Payment Date"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "Cash\nCheck\nBank Transfer\nCredit Card\nDebit Card\nOnline Payment\nMobile Payment\nOther"
+  },
+  {
+   "fieldname": "payment_reference",
+   "fieldtype": "Data",
+   "label": "Payment Reference",
+   "description": "Check number, transaction ID, etc."
+  },
+  {
+   "fieldname": "column_break_22",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "invoice_reference",
@@ -130,7 +190,62 @@
    "options": "Sales Invoice"
   },
   {
-   "fieldname": "section_break_17",
+   "fieldname": "invoice_status",
+   "fieldtype": "Select",
+   "label": "Invoice Status",
+   "options": "Not Created\nDraft\nSubmitted\nPaid\nCancelled",
+   "default": "Not Created",
+   "read_only": 1
+  },
+  {
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_26",
+   "fieldtype": "Section Break",
+   "label": "Late Fee Management"
+  },
+  {
+   "fieldname": "late_fee_applied_date",
+   "fieldtype": "Date",
+   "label": "Late Fee Applied Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "waived_late_fee",
+   "fieldtype": "Currency",
+   "label": "Waived Late Fee"
+  },
+  {
+   "fieldname": "waiver_reason",
+   "fieldtype": "Data",
+   "label": "Waiver Reason"
+  },
+  {
+   "fieldname": "column_break_30",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reminder_sent_date",
+   "fieldtype": "Date",
+   "label": "First Reminder Sent Date"
+  },
+  {
+   "fieldname": "reminder_count",
+   "fieldtype": "Int",
+   "label": "Reminder Count",
+   "default": "0"
+  },
+  {
+   "fieldname": "last_reminder_date",
+   "fieldtype": "Date",
+   "label": "Last Reminder Date"
+  },
+  {
+   "fieldname": "section_break_34",
    "fieldtype": "Section Break",
    "label": "Additional Information"
   },
@@ -140,15 +255,15 @@
    "label": "Notes"
   },
   {
-   "fieldname": "payment_method",
-   "fieldtype": "Select",
-   "label": "Payment Method",
-   "options": "Cash\nCheck\nBank Transfer\nCredit Card\nOnline Payment\nOther"
+   "fieldname": "internal_notes",
+   "fieldtype": "Text",
+   "label": "Internal Notes",
+   "description": "Internal notes not visible to tenant"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-18 19:45:00.000000",
+ "modified": "2025-07-20 16:30:00.000000",
  "modified_by": "Administrator",
  "module": "Property Manager",
  "name": "Rent Schedule",
@@ -185,4 +300,3 @@
  "states": [],
  "track_changes": 1
 }
-

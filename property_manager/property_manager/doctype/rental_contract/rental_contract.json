@@ -10,26 +10,44 @@
  "field_order": [
   "naming_series",
   "tenant",
+  "property",
   "rental_unit",
-  "column_break_4",
+  "column_break_5",
   "start_date",
   "end_date",
   "contract_status",
-  "section_break_8",
-  "rent_amount",
+  "section_break_9",
+  "monthly_rent",
   "security_deposit_amount",
   "payment_frequency",
-  "column_break_12",
+  "column_break_13",
   "late_fee_amount",
   "grace_period_days",
   "payment_due_day",
-  "section_break_16",
+  "section_break_17",
+  "rent_amount_per_frequency",
+  "total_contract_value",
+  "column_break_20",
+  "deposit_paid",
+  "deposit_paid_date",
+  "deposit_status",
+  "section_break_24",
+  "payment_schedule_reference",
+  "column_break_26",
+  "auto_create_payment_schedule",
+  "section_break_28",
+  "auto_renewal",
+  "renewal_notice_days",
+  "column_break_31",
+  "early_termination_fee",
+  "termination_notice_days",
+  "section_break_34",
   "terms_and_conditions",
   "special_clauses",
-  "section_break_19",
+  "section_break_37",
   "created_by",
   "creation_date",
-  "column_break_22",
+  "column_break_40",
   "approved_by",
   "approval_date"
  ],
@@ -50,6 +68,14 @@
    "reqd": 1
   },
   {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Property",
+   "read_only": 1,
+   "description": "Automatically populated from rental unit"
+  },
+  {
    "fieldname": "rental_unit",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -58,7 +84,7 @@
    "reqd": 1
   },
   {
-   "fieldname": "column_break_4",
+   "fieldname": "column_break_5",
    "fieldtype": "Column Break"
   },
   {
@@ -80,21 +106,22 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Contract Status",
-   "options": "Draft\nActive\nExpired\nTerminated\nRenewed",
+   "options": "Draft\nActive\nExpired\nTerminated\nRenewed\nCancelled",
    "reqd": 1,
    "default": "Draft"
   },
   {
-   "fieldname": "section_break_8",
+   "fieldname": "section_break_9",
    "fieldtype": "Section Break",
    "label": "Financial Terms"
   },
   {
-   "fieldname": "rent_amount",
+   "fieldname": "monthly_rent",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Rent Amount",
-   "reqd": 1
+   "label": "Monthly Rent",
+   "reqd": 1,
+   "description": "Base monthly rent amount"
   },
   {
    "fieldname": "security_deposit_amount",
@@ -110,7 +137,7 @@
    "default": "Monthly"
   },
   {
-   "fieldname": "column_break_12",
+   "fieldname": "column_break_13",
    "fieldtype": "Column Break"
   },
   {
@@ -126,12 +153,112 @@
   },
   {
    "fieldname": "payment_due_day",
-   "fieldtype": "Int",
-   "label": "Payment Due Day of Month",
-   "default": "1"
+   "fieldtype": "Select",
+   "label": "Payment Due Day",
+   "options": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\nSunday\nMonday\nTuesday\nWednesday\nThursday",
+   "default": "1",
+   "description": "Day of month for monthly payments, or day of week for weekly payments"
   },
   {
-   "fieldname": "section_break_16",
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break",
+   "label": "Calculated Amounts"
+  },
+  {
+   "fieldname": "rent_amount_per_frequency",
+   "fieldtype": "Currency",
+   "label": "Rent Amount Per Payment",
+   "read_only": 1,
+   "description": "Calculated based on payment frequency"
+  },
+  {
+   "fieldname": "total_contract_value",
+   "fieldtype": "Currency",
+   "label": "Total Contract Value",
+   "read_only": 1,
+   "description": "Total rent for entire contract period"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "deposit_paid",
+   "fieldtype": "Currency",
+   "label": "Deposit Paid"
+  },
+  {
+   "fieldname": "deposit_paid_date",
+   "fieldtype": "Date",
+   "label": "Deposit Paid Date"
+  },
+  {
+   "fieldname": "deposit_status",
+   "fieldtype": "Select",
+   "label": "Deposit Status",
+   "options": "Pending\nPaid\nPartially Paid\nRefunded\nForfeited",
+   "default": "Pending"
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break",
+   "label": "Payment Schedule"
+  },
+  {
+   "fieldname": "payment_schedule_reference",
+   "fieldtype": "Link",
+   "label": "Payment Schedule Reference",
+   "options": "Rental Payment Schedule",
+   "read_only": 1,
+   "description": "Automatically created payment schedule"
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "auto_create_payment_schedule",
+   "fieldtype": "Check",
+   "label": "Auto Create Payment Schedule",
+   "default": 1,
+   "description": "Automatically create payment schedule when contract is submitted"
+  },
+  {
+   "fieldname": "section_break_28",
+   "fieldtype": "Section Break",
+   "label": "Contract Options"
+  },
+  {
+   "fieldname": "auto_renewal",
+   "fieldtype": "Check",
+   "label": "Auto Renewal",
+   "description": "Automatically renew contract if not terminated"
+  },
+  {
+   "fieldname": "renewal_notice_days",
+   "fieldtype": "Int",
+   "label": "Renewal Notice Days",
+   "default": "30",
+   "description": "Days notice required for renewal decision"
+  },
+  {
+   "fieldname": "column_break_31",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "early_termination_fee",
+   "fieldtype": "Currency",
+   "label": "Early Termination Fee"
+  },
+  {
+   "fieldname": "termination_notice_days",
+   "fieldtype": "Int",
+   "label": "Termination Notice Days",
+   "default": "30",
+   "description": "Days notice required for termination"
+  },
+  {
+   "fieldname": "section_break_34",
    "fieldtype": "Section Break",
    "label": "Contract Terms"
   },
@@ -146,7 +273,7 @@
    "label": "Special Clauses"
   },
   {
-   "fieldname": "section_break_19",
+   "fieldname": "section_break_37",
    "fieldtype": "Section Break",
    "label": "Approval Information"
   },
@@ -164,7 +291,7 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_22",
+   "fieldname": "column_break_40",
    "fieldtype": "Column Break"
   },
   {
@@ -182,7 +309,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-18 19:45:00.000000",
+ "modified": "2025-07-20 17:30:00.000000",
  "modified_by": "Administrator",
  "module": "Property Manager",
  "name": "Rental Contract",
@@ -221,4 +348,3 @@
  "states": [],
  "track_changes": 1
 }
-

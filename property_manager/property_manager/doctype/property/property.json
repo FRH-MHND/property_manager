@@ -9,18 +9,34 @@
  "engine": "InnoDB",
  "field_order": [
   "property_name",
+  "property_type",
+  "property_status",
+  "column_break_3",
+  "total_units",
+  "available_units",
+  "occupied_units",
+  "occupancy_rate",
+  "section_break_8",
   "address",
   "city",
   "state",
   "postal_code",
   "country",
-  "column_break_7",
-  "property_type",
-  "total_units",
+  "section_break_14",
+  "property_manager",
+  "manager_email",
+  "manager_phone",
+  "column_break_18",
   "owner_name",
   "owner_contact",
   "owner_email",
-  "section_break_13",
+  "section_break_22",
+  "purchase_price",
+  "purchase_date",
+  "column_break_25",
+  "current_market_value",
+  "last_valuation_date",
+  "section_break_28",
   "description",
   "amenities"
  ],
@@ -32,6 +48,63 @@
    "label": "Property Name",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "property_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Property Type",
+   "options": "Residential\nCommercial\nMixed Use\nIndustrial",
+   "reqd": 1
+  },
+  {
+   "fieldname": "property_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Property Status",
+   "options": "Active\nInactive\nUnder Renovation\nFor Sale",
+   "default": "Active",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_units",
+   "fieldtype": "Int",
+   "label": "Total Units",
+   "non_negative": 1,
+   "read_only": 1,
+   "description": "Automatically calculated based on linked rental units"
+  },
+  {
+   "fieldname": "available_units",
+   "fieldtype": "Int",
+   "label": "Available Units",
+   "non_negative": 1,
+   "read_only": 1,
+   "description": "Units currently available for rent"
+  },
+  {
+   "fieldname": "occupied_units",
+   "fieldtype": "Int",
+   "label": "Occupied Units",
+   "non_negative": 1,
+   "read_only": 1,
+   "description": "Units currently occupied"
+  },
+  {
+   "fieldname": "occupancy_rate",
+   "fieldtype": "Percent",
+   "label": "Occupancy Rate",
+   "read_only": 1,
+   "description": "Percentage of occupied units"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break",
+   "label": "Address Information"
   },
   {
    "fieldname": "address",
@@ -63,27 +136,35 @@
    "options": "Country"
   },
   {
-   "fieldname": "column_break_7",
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break",
+   "label": "Management Information"
+  },
+  {
+   "fieldname": "property_manager",
+   "fieldtype": "Data",
+   "label": "Property Manager",
+   "description": "Person responsible for day-to-day management"
+  },
+  {
+   "fieldname": "manager_email",
+   "fieldtype": "Data",
+   "label": "Manager Email"
+  },
+  {
+   "fieldname": "manager_phone",
+   "fieldtype": "Data",
+   "label": "Manager Phone"
+  },
+  {
+   "fieldname": "column_break_18",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "property_type",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Property Type",
-   "options": "Residential\nCommercial\nMixed Use\nIndustrial",
-   "reqd": 1
-  },
-  {
-   "fieldname": "total_units",
-   "fieldtype": "Int",
-   "label": "Total Units",
-   "non_negative": 1
   },
   {
    "fieldname": "owner_name",
    "fieldtype": "Data",
-   "label": "Owner Name"
+   "label": "Owner Name",
+   "description": "Property owner (may be different from manager)"
   },
   {
    "fieldname": "owner_contact",
@@ -96,7 +177,38 @@
    "label": "Owner Email"
   },
   {
-   "fieldname": "section_break_13",
+   "fieldname": "section_break_22",
+   "fieldtype": "Section Break",
+   "label": "Financial Information"
+  },
+  {
+   "fieldname": "purchase_price",
+   "fieldtype": "Currency",
+   "label": "Purchase Price",
+   "description": "Original purchase price of the property"
+  },
+  {
+   "fieldname": "purchase_date",
+   "fieldtype": "Date",
+   "label": "Purchase Date"
+  },
+  {
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_market_value",
+   "fieldtype": "Currency",
+   "label": "Current Market Value",
+   "description": "Current estimated market value"
+  },
+  {
+   "fieldname": "last_valuation_date",
+   "fieldtype": "Date",
+   "label": "Last Valuation Date"
+  },
+  {
+   "fieldname": "section_break_28",
    "fieldtype": "Section Break",
    "label": "Additional Information"
   },
@@ -113,7 +225,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-18 19:45:00.000000",
+ "modified": "2025-07-20 16:30:00.000000",
  "modified_by": "Administrator",
  "module": "Property Manager",
  "name": "Property",
@@ -150,4 +262,3 @@
  "states": [],
  "track_changes": 1
 }
-

@@ -12,11 +12,11 @@
   "unit_number",
   "unit_type",
   "column_break_4",
-  "status",
+  "unit_status",
   "furnished_status",
   "square_footage",
   "section_break_8",
-  "base_rent",
+  "monthly_rent",
   "security_deposit",
   "late_fee_amount",
   "column_break_12",
@@ -24,6 +24,14 @@
   "bathrooms",
   "parking_spaces",
   "section_break_16",
+  "lease_start_date",
+  "lease_end_date",
+  "current_tenant",
+  "column_break_20",
+  "last_maintenance_date",
+  "next_maintenance_date",
+  "maintenance_status",
+  "section_break_24",
   "description",
   "amenities",
   "notes"
@@ -49,7 +57,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Unit Type",
-   "options": "Studio\n1 Bedroom\n2 Bedroom\n3 Bedroom\n4+ Bedroom\nCommercial Space\nStorage Unit\nParking Space",
+   "options": "Studio\nOne Bedroom\nTwo Bedroom\nThree Bedroom\nFour+ Bedroom\nOffice Space\nConference Room\nStorage Unit\nParking Space",
    "reqd": 1
   },
   {
@@ -57,11 +65,11 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "status",
+   "fieldname": "unit_status",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Status",
-   "options": "Available\nOccupied\nMaintenance\nRenovation",
+   "label": "Unit Status",
+   "options": "Available\nOccupied\nMaintenance\nRenovation\nOut of Service",
    "reqd": 1,
    "default": "Available"
   },
@@ -85,21 +93,24 @@
    "label": "Rental Information"
   },
   {
-   "fieldname": "base_rent",
+   "fieldname": "monthly_rent",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Base Rent Amount",
-   "reqd": 1
+   "label": "Monthly Rent",
+   "reqd": 1,
+   "description": "Base monthly rent amount"
   },
   {
    "fieldname": "security_deposit",
    "fieldtype": "Currency",
-   "label": "Security Deposit"
+   "label": "Security Deposit",
+   "description": "Required security deposit amount"
   },
   {
    "fieldname": "late_fee_amount",
    "fieldtype": "Currency",
-   "label": "Late Fee Amount"
+   "label": "Late Fee Amount",
+   "description": "Late payment fee"
   },
   {
    "fieldname": "column_break_12",
@@ -126,6 +137,54 @@
   {
    "fieldname": "section_break_16",
    "fieldtype": "Section Break",
+   "label": "Current Lease Information"
+  },
+  {
+   "fieldname": "lease_start_date",
+   "fieldtype": "Date",
+   "label": "Current Lease Start Date",
+   "read_only": 1,
+   "description": "Automatically updated from active contract"
+  },
+  {
+   "fieldname": "lease_end_date",
+   "fieldtype": "Date",
+   "label": "Current Lease End Date",
+   "read_only": 1,
+   "description": "Automatically updated from active contract"
+  },
+  {
+   "fieldname": "current_tenant",
+   "fieldtype": "Link",
+   "label": "Current Tenant",
+   "options": "Tenant",
+   "read_only": 1,
+   "description": "Automatically updated from active contract"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_maintenance_date",
+   "fieldtype": "Date",
+   "label": "Last Maintenance Date"
+  },
+  {
+   "fieldname": "next_maintenance_date",
+   "fieldtype": "Date",
+   "label": "Next Maintenance Date"
+  },
+  {
+   "fieldname": "maintenance_status",
+   "fieldtype": "Select",
+   "label": "Maintenance Status",
+   "options": "Good\nNeeds Attention\nScheduled\nIn Progress\nCompleted",
+   "default": "Good"
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break",
    "label": "Additional Information"
   },
   {
@@ -146,7 +205,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-18 19:45:00.000000",
+ "modified": "2025-07-20 16:30:00.000000",
  "modified_by": "Administrator",
  "module": "Property Manager",
  "name": "Rental Unit",
@@ -183,4 +242,3 @@
  "states": [],
  "track_changes": 1
 }
-

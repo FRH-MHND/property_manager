@@ -1,46 +1,143 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:tenant_name",
- "creation": "2025-07-18 19:45:00.000000",
+ "autoname": "naming_series:TNT-.YYYY.-",
+ "creation": "2025-07-18 19:45:00",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "tenant_name",
+  "naming_series",
+  "tenant_type",
+  "column_break_2",
+  "background_check_status",
+  "section_break_4",
+  "first_name",
+  "last_name",
+  "full_name",
+  "column_break_8",
+  "company_name",
+  "contact_person",
+  "section_break_11",
   "email",
   "phone",
-  "column_break_4",
+  "column_break_14",
   "date_of_birth",
   "id_number",
+  "section_break_17",
+  "employment_status",
+  "employer",
   "occupation",
-  "section_break_8",
+  "column_break_21",
+  "annual_income",
+  "monthly_income",
+  "credit_score",
+  "section_break_25",
+  "business_license",
+  "tax_id",
+  "column_break_28",
+  "annual_revenue",
+  "business_type",
+  "credit_rating",
+  "section_break_32",
   "current_address",
   "city",
   "state",
   "postal_code",
   "country",
-  "section_break_14",
+  "column_break_38",
+  "previous_address",
+  "previous_city",
+  "previous_state",
+  "previous_postal_code",
+  "previous_country",
+  "section_break_44",
   "emergency_contact_name",
   "emergency_contact_phone",
   "emergency_contact_relationship",
-  "column_break_18",
-  "credit_score",
-  "monthly_income",
-  "employer",
-  "section_break_22",
+  "column_break_48",
+  "emergency_contact_email",
+  "emergency_contact_address",
+  "section_break_51",
   "notes",
   "documents_provided"
  ],
  "fields": [
   {
-   "fieldname": "tenant_name",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "TNT-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "default": "Individual",
+   "fieldname": "tenant_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Tenant Type",
+   "options": "Individual\nCorporate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "background_check_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Background Check Status",
+   "options": "Pending\nIn Progress\nPassed\nFailed"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Personal Information"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "full_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Tenant Name",
-   "reqd": 1,
-   "unique": 1
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Company Name"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break",
+   "label": "Contact Information"
   },
   {
    "fieldname": "email",
@@ -57,10 +154,11 @@
    "reqd": 1
   },
   {
-   "fieldname": "column_break_4",
+   "fieldname": "column_break_14",
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
    "fieldname": "date_of_birth",
    "fieldtype": "Date",
    "label": "Date of Birth"
@@ -71,12 +169,98 @@
    "label": "ID/Passport Number"
   },
   {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break",
+   "label": "Employment Information"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "employment_status",
+   "fieldtype": "Select",
+   "label": "Employment Status",
+   "options": "Employed\nSelf-Employed\nUnemployed\nRetired\nStudent"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "employer",
+   "fieldtype": "Data",
+   "label": "Employer"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
    "fieldname": "occupation",
    "fieldtype": "Data",
    "label": "Occupation"
   },
   {
-   "fieldname": "section_break_8",
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "annual_income",
+   "fieldtype": "Currency",
+   "label": "Annual Income"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "description": "Automatically calculated from annual income",
+   "fieldname": "monthly_income",
+   "fieldtype": "Currency",
+   "label": "Monthly Income",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "description": "Credit score (300-850)",
+   "fieldname": "credit_score",
+   "fieldtype": "Int",
+   "label": "Credit Score"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "section_break_25",
+   "fieldtype": "Section Break",
+   "label": "Business Information"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "business_license",
+   "fieldtype": "Data",
+   "label": "Business License"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "tax_id",
+   "fieldtype": "Data",
+   "label": "Tax ID"
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "annual_revenue",
+   "fieldtype": "Currency",
+   "label": "Annual Revenue"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "business_type",
+   "fieldtype": "Data",
+   "label": "Business Type"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "credit_rating",
+   "fieldtype": "Select",
+   "label": "Credit Rating",
+   "options": "A+\nA\nA-\nB+\nB\nB-\nC+\nC\nC-\nD"
+  },
+  {
+   "fieldname": "section_break_32",
    "fieldtype": "Section Break",
    "label": "Address Information"
   },
@@ -107,7 +291,37 @@
    "options": "Country"
   },
   {
-   "fieldname": "section_break_14",
+   "fieldname": "column_break_38",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "previous_address",
+   "fieldtype": "Small Text",
+   "label": "Previous Address"
+  },
+  {
+   "fieldname": "previous_city",
+   "fieldtype": "Data",
+   "label": "Previous City"
+  },
+  {
+   "fieldname": "previous_state",
+   "fieldtype": "Data",
+   "label": "Previous State/Province"
+  },
+  {
+   "fieldname": "previous_postal_code",
+   "fieldtype": "Data",
+   "label": "Previous Postal Code"
+  },
+  {
+   "fieldname": "previous_country",
+   "fieldtype": "Link",
+   "label": "Previous Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "section_break_44",
    "fieldtype": "Section Break",
    "label": "Emergency Contact"
   },
@@ -127,26 +341,21 @@
    "label": "Relationship"
   },
   {
-   "fieldname": "column_break_18",
+   "fieldname": "column_break_48",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "credit_score",
-   "fieldtype": "Int",
-   "label": "Credit Score"
-  },
-  {
-   "fieldname": "monthly_income",
-   "fieldtype": "Currency",
-   "label": "Monthly Income"
-  },
-  {
-   "fieldname": "employer",
+   "fieldname": "emergency_contact_email",
    "fieldtype": "Data",
-   "label": "Employer"
+   "label": "Emergency Contact Email"
   },
   {
-   "fieldname": "section_break_22",
+   "fieldname": "emergency_contact_address",
+   "fieldtype": "Small Text",
+   "label": "Emergency Contact Address"
+  },
+  {
+   "fieldname": "section_break_51",
    "fieldtype": "Section Break",
    "label": "Additional Information"
   },
@@ -163,11 +372,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-18 19:45:00.000000",
+ "modified": "2025-07-20 17:19:19.501162",
  "modified_by": "Administrator",
  "module": "Property Manager",
  "name": "Tenant",
- "naming_rule": "By fieldname",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -200,4 +409,3 @@
  "states": [],
  "track_changes": 1
 }
-
