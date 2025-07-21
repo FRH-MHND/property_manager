@@ -12,54 +12,71 @@
   "tenant_type",
   "column_break_2",
   "background_check_status",
-  "section_break_4",
+  "tab_break_personal",
+  "section_break_personal_info",
   "first_name",
   "last_name",
   "full_name",
-  "column_break_8",
+  "column_break_personal_1",
   "company_name",
   "contact_person",
-  "section_break_11",
+  "section_break_contact",
   "email",
   "phone",
-  "column_break_14",
+  "column_break_contact_1",
   "date_of_birth",
   "id_number",
-  "section_break_17",
+  "section_break_tenant_summary",
+  "tenant_summary_html",
+  "tab_break_employment",
+  "section_break_employment_info",
   "employment_status",
   "employer",
   "occupation",
-  "column_break_21",
+  "column_break_employment_1",
   "annual_income",
   "monthly_income",
   "credit_score",
-  "section_break_25",
+  "section_break_employment_verification",
+  "employment_verification_html",
+  "tab_break_business",
+  "section_break_business_info",
   "business_license",
   "tax_id",
-  "column_break_28",
-  "annual_revenue",
   "business_type",
+  "column_break_business_1",
+  "annual_revenue",
   "credit_rating",
-  "section_break_32",
+  "section_break_business_summary",
+  "business_summary_html",
+  "tab_break_address",
+  "section_break_current_address",
   "current_address",
   "city",
   "state",
+  "column_break_address_1",
   "postal_code",
   "country",
-  "column_break_38",
+  "section_break_previous_address",
   "previous_address",
   "previous_city",
   "previous_state",
+  "column_break_address_2",
   "previous_postal_code",
   "previous_country",
-  "section_break_44",
+  "section_break_address_map",
+  "address_map_html",
+  "tab_break_emergency",
+  "section_break_emergency_contact",
   "emergency_contact_name",
   "emergency_contact_phone",
   "emergency_contact_relationship",
-  "column_break_48",
+  "column_break_emergency_1",
   "emergency_contact_email",
   "emergency_contact_address",
-  "section_break_51",
+  "section_break_references",
+  "references_html",
+  "section_break_additional",
   "notes",
   "documents_provided"
  ],
@@ -93,9 +110,14 @@
    "options": "Pending\nIn Progress\nPassed\nFailed"
   },
   {
-   "fieldname": "section_break_4",
-   "fieldtype": "Section Break",
+   "fieldname": "tab_break_personal",
+   "fieldtype": "Tab Break",
    "label": "Personal Information"
+  },
+  {
+   "fieldname": "section_break_personal_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
   },
   {
    "depends_on": "eval:doc.tenant_type=='Individual'",
@@ -118,7 +140,7 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_8",
+   "fieldname": "column_break_personal_1",
    "fieldtype": "Column Break"
   },
   {
@@ -135,7 +157,7 @@
    "label": "Contact Person"
   },
   {
-   "fieldname": "section_break_11",
+   "fieldname": "section_break_contact",
    "fieldtype": "Section Break",
    "label": "Contact Information"
   },
@@ -154,7 +176,7 @@
    "reqd": 1
   },
   {
-   "fieldname": "column_break_14",
+   "fieldname": "column_break_contact_1",
    "fieldtype": "Column Break"
   },
   {
@@ -169,8 +191,24 @@
    "label": "ID/Passport Number"
   },
   {
+   "fieldname": "section_break_tenant_summary",
+   "fieldtype": "Section Break",
+   "label": "Tenant Summary"
+  },
+  {
+   "fieldname": "tenant_summary_html",
+   "fieldtype": "HTML",
+   "label": "Tenant Overview",
+   "options": "<div id=\"tenant-summary-dashboard\">Loading tenant summary...</div>"
+  },
+  {
+   "fieldname": "tab_break_employment",
+   "fieldtype": "Tab Break",
+   "label": "Employment & Financial"
+  },
+  {
    "depends_on": "eval:doc.tenant_type=='Individual'",
-   "fieldname": "section_break_17",
+   "fieldname": "section_break_employment_info",
    "fieldtype": "Section Break",
    "label": "Employment Information"
   },
@@ -194,7 +232,7 @@
    "label": "Occupation"
   },
   {
-   "fieldname": "column_break_21",
+   "fieldname": "column_break_employment_1",
    "fieldtype": "Column Break"
   },
   {
@@ -219,10 +257,28 @@
    "label": "Credit Score"
   },
   {
-   "depends_on": "eval:doc.tenant_type=='Corporate'",
-   "fieldname": "section_break_25",
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "section_break_employment_verification",
    "fieldtype": "Section Break",
+   "label": "Employment Verification"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "employment_verification_html",
+   "fieldtype": "HTML",
+   "label": "Verification Status",
+   "options": "<div id=\"employment-verification-dashboard\">Loading employment verification...</div>"
+  },
+  {
+   "fieldname": "tab_break_business",
+   "fieldtype": "Tab Break",
    "label": "Business Information"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "section_break_business_info",
+   "fieldtype": "Section Break",
+   "label": "Business Details"
   },
   {
    "depends_on": "eval:doc.tenant_type=='Corporate'",
@@ -237,7 +293,13 @@
    "label": "Tax ID"
   },
   {
-   "fieldname": "column_break_28",
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "business_type",
+   "fieldtype": "Data",
+   "label": "Business Type"
+  },
+  {
+   "fieldname": "column_break_business_1",
    "fieldtype": "Column Break"
   },
   {
@@ -248,21 +310,33 @@
   },
   {
    "depends_on": "eval:doc.tenant_type=='Corporate'",
-   "fieldname": "business_type",
-   "fieldtype": "Data",
-   "label": "Business Type"
-  },
-  {
-   "depends_on": "eval:doc.tenant_type=='Corporate'",
    "fieldname": "credit_rating",
    "fieldtype": "Select",
    "label": "Credit Rating",
    "options": "A+\nA\nA-\nB+\nB\nB-\nC+\nC\nC-\nD"
   },
   {
-   "fieldname": "section_break_32",
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "section_break_business_summary",
    "fieldtype": "Section Break",
+   "label": "Business Summary"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "business_summary_html",
+   "fieldtype": "HTML",
+   "label": "Business Overview",
+   "options": "<div id=\"business-summary-dashboard\">Loading business summary...</div>"
+  },
+  {
+   "fieldname": "tab_break_address",
+   "fieldtype": "Tab Break",
    "label": "Address Information"
+  },
+  {
+   "fieldname": "section_break_current_address",
+   "fieldtype": "Section Break",
+   "label": "Current Address"
   },
   {
    "fieldname": "current_address",
@@ -280,6 +354,10 @@
    "label": "State/Province"
   },
   {
+   "fieldname": "column_break_address_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "postal_code",
    "fieldtype": "Data",
    "label": "Postal Code"
@@ -291,8 +369,9 @@
    "options": "Country"
   },
   {
-   "fieldname": "column_break_38",
-   "fieldtype": "Column Break"
+   "fieldname": "section_break_previous_address",
+   "fieldtype": "Section Break",
+   "label": "Previous Address"
   },
   {
    "fieldname": "previous_address",
@@ -310,6 +389,10 @@
    "label": "Previous State/Province"
   },
   {
+   "fieldname": "column_break_address_2",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "previous_postal_code",
    "fieldtype": "Data",
    "label": "Previous Postal Code"
@@ -321,7 +404,23 @@
    "options": "Country"
   },
   {
-   "fieldname": "section_break_44",
+   "fieldname": "section_break_address_map",
+   "fieldtype": "Section Break",
+   "label": "Address Map"
+  },
+  {
+   "fieldname": "address_map_html",
+   "fieldtype": "HTML",
+   "label": "Location Map",
+   "options": "<div id=\"tenant-address-map\">Loading address map...</div>"
+  },
+  {
+   "fieldname": "tab_break_emergency",
+   "fieldtype": "Tab Break",
+   "label": "Emergency & References"
+  },
+  {
+   "fieldname": "section_break_emergency_contact",
    "fieldtype": "Section Break",
    "label": "Emergency Contact"
   },
@@ -341,7 +440,7 @@
    "label": "Relationship"
   },
   {
-   "fieldname": "column_break_48",
+   "fieldname": "column_break_emergency_1",
    "fieldtype": "Column Break"
   },
   {
@@ -355,7 +454,18 @@
    "label": "Emergency Contact Address"
   },
   {
-   "fieldname": "section_break_51",
+   "fieldname": "section_break_references",
+   "fieldtype": "Section Break",
+   "label": "References & Background Check"
+  },
+  {
+   "fieldname": "references_html",
+   "fieldtype": "HTML",
+   "label": "References & Verification",
+   "options": "<div id=\"tenant-references-dashboard\">Loading references and background check...</div>"
+  },
+  {
+   "fieldname": "section_break_additional",
    "fieldtype": "Section Break",
    "label": "Additional Information"
   },
@@ -409,3 +519,4 @@
  "states": [],
  "track_changes": 1
 }
+

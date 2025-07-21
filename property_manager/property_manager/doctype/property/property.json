@@ -11,34 +11,51 @@
   "property_name",
   "property_type",
   "property_status",
-  "column_break_3",
+  "tab_break_basic",
+  "section_break_unit_summary",
   "total_units",
   "available_units",
+  "column_break_units_1",
   "occupied_units",
   "occupancy_rate",
-  "section_break_8",
+  "section_break_performance",
+  "property_performance_html",
+  "tab_break_location",
+  "section_break_address",
   "address",
   "city",
+  "column_break_location_1",
   "state",
   "postal_code",
   "country",
-  "section_break_14",
+  "section_break_location_map",
+  "location_map_html",
+  "tab_break_management",
+  "section_break_property_manager",
   "property_manager",
   "manager_email",
   "manager_phone",
-  "column_break_18",
+  "column_break_management_1",
   "owner_name",
   "owner_contact",
   "owner_email",
-  "section_break_22",
+  "section_break_management_summary",
+  "management_summary_html",
+  "tab_break_financial",
+  "section_break_purchase_info",
   "purchase_price",
   "purchase_date",
-  "column_break_25",
+  "column_break_financial_1",
   "current_market_value",
   "last_valuation_date",
-  "section_break_28",
+  "section_break_financial_analysis",
+  "financial_analysis_html",
+  "tab_break_details",
+  "section_break_description",
   "description",
-  "amenities"
+  "amenities",
+  "section_break_property_images",
+  "property_images_html"
  ],
  "fields": [
   {
@@ -67,8 +84,14 @@
    "reqd": 1
   },
   {
-   "fieldname": "column_break_3",
-   "fieldtype": "Column Break"
+   "fieldname": "tab_break_basic",
+   "fieldtype": "Tab Break",
+   "label": "Basic Information"
+  },
+  {
+   "fieldname": "section_break_unit_summary",
+   "fieldtype": "Section Break",
+   "label": "Unit Summary"
   },
   {
    "fieldname": "total_units",
@@ -87,6 +110,10 @@
    "description": "Units currently available for rent"
   },
   {
+   "fieldname": "column_break_units_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "occupied_units",
    "fieldtype": "Int",
    "label": "Occupied Units",
@@ -102,7 +129,23 @@
    "description": "Percentage of occupied units"
   },
   {
-   "fieldname": "section_break_8",
+   "fieldname": "section_break_performance",
+   "fieldtype": "Section Break",
+   "label": "Property Performance"
+  },
+  {
+   "fieldname": "property_performance_html",
+   "fieldtype": "HTML",
+   "label": "Performance Dashboard",
+   "options": "<div id=\"property-performance-dashboard\">Loading property performance...</div>"
+  },
+  {
+   "fieldname": "tab_break_location",
+   "fieldtype": "Tab Break",
+   "label": "Location Details"
+  },
+  {
+   "fieldname": "section_break_address",
    "fieldtype": "Section Break",
    "label": "Address Information"
   },
@@ -118,6 +161,10 @@
    "in_list_view": 1,
    "label": "City",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_location_1",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "state",
@@ -136,7 +183,23 @@
    "options": "Country"
   },
   {
-   "fieldname": "section_break_14",
+   "fieldname": "section_break_location_map",
+   "fieldtype": "Section Break",
+   "label": "Location Map"
+  },
+  {
+   "fieldname": "location_map_html",
+   "fieldtype": "HTML",
+   "label": "Map View",
+   "options": "<div id=\"property-location-map\">Loading location map...</div>"
+  },
+  {
+   "fieldname": "tab_break_management",
+   "fieldtype": "Tab Break",
+   "label": "Management & Ownership"
+  },
+  {
+   "fieldname": "section_break_property_manager",
    "fieldtype": "Section Break",
    "label": "Management Information"
   },
@@ -157,7 +220,7 @@
    "label": "Manager Phone"
   },
   {
-   "fieldname": "column_break_18",
+   "fieldname": "column_break_management_1",
    "fieldtype": "Column Break"
   },
   {
@@ -177,9 +240,25 @@
    "label": "Owner Email"
   },
   {
-   "fieldname": "section_break_22",
+   "fieldname": "section_break_management_summary",
    "fieldtype": "Section Break",
+   "label": "Management Summary"
+  },
+  {
+   "fieldname": "management_summary_html",
+   "fieldtype": "HTML",
+   "label": "Management Overview",
+   "options": "<div id=\"property-management-summary\">Loading management summary...</div>"
+  },
+  {
+   "fieldname": "tab_break_financial",
+   "fieldtype": "Tab Break",
    "label": "Financial Information"
+  },
+  {
+   "fieldname": "section_break_purchase_info",
+   "fieldtype": "Section Break",
+   "label": "Purchase Information"
   },
   {
    "fieldname": "purchase_price",
@@ -193,7 +272,7 @@
    "label": "Purchase Date"
   },
   {
-   "fieldname": "column_break_25",
+   "fieldname": "column_break_financial_1",
    "fieldtype": "Column Break"
   },
   {
@@ -208,9 +287,25 @@
    "label": "Last Valuation Date"
   },
   {
-   "fieldname": "section_break_28",
+   "fieldname": "section_break_financial_analysis",
    "fieldtype": "Section Break",
-   "label": "Additional Information"
+   "label": "Financial Analysis"
+  },
+  {
+   "fieldname": "financial_analysis_html",
+   "fieldtype": "HTML",
+   "label": "Financial Dashboard",
+   "options": "<div id=\"property-financial-analysis\">Loading financial analysis...</div>"
+  },
+  {
+   "fieldname": "tab_break_details",
+   "fieldtype": "Tab Break",
+   "label": "Additional Details"
+  },
+  {
+   "fieldname": "section_break_description",
+   "fieldtype": "Section Break",
+   "label": "Property Description"
   },
   {
    "fieldname": "description",
@@ -221,6 +316,17 @@
    "fieldname": "amenities",
    "fieldtype": "Small Text",
    "label": "Amenities"
+  },
+  {
+   "fieldname": "section_break_property_images",
+   "fieldtype": "Section Break",
+   "label": "Property Images"
+  },
+  {
+   "fieldname": "property_images_html",
+   "fieldtype": "HTML",
+   "label": "Property Gallery",
+   "options": "<div id=\"property-images-gallery\">Loading property images...</div>"
   }
  ],
  "index_web_pages_for_search": 1,

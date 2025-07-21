@@ -15,26 +15,47 @@
   "unit_status",
   "furnished_status",
   "square_footage",
-  "section_break_8",
-  "monthly_rent",
-  "security_deposit",
-  "late_fee_amount",
-  "column_break_12",
+  "tab_break_specifications",
+  "section_break_unit_specs",
   "bedrooms",
   "bathrooms",
   "parking_spaces",
-  "section_break_16",
+  "column_break_specs_1",
+  "monthly_rent",
+  "security_deposit",
+  "late_fee_amount",
+  "section_break_unit_features",
+  "unit_features_html",
+  "tab_break_financial",
+  "section_break_rental_rates",
+  "rental_rates_html",
+  "section_break_financial_summary",
+  "financial_summary_html",
+  "tab_break_lease",
+  "section_break_current_lease",
+  "current_tenant",
   "lease_start_date",
   "lease_end_date",
-  "current_tenant",
-  "column_break_20",
+  "column_break_lease_1",
+  "lease_status_html",
+  "section_break_lease_history",
+  "lease_history_html",
+  "tab_break_maintenance",
+  "section_break_maintenance_info",
+  "maintenance_status",
   "last_maintenance_date",
   "next_maintenance_date",
-  "maintenance_status",
-  "section_break_24",
+  "column_break_maintenance_1",
+  "maintenance_schedule_html",
+  "section_break_maintenance_history",
+  "maintenance_history_html",
+  "tab_break_details",
+  "section_break_description",
   "description",
   "amenities",
-  "notes"
+  "notes",
+  "section_break_unit_gallery",
+  "unit_gallery_html"
  ],
  "fields": [
   {
@@ -88,9 +109,36 @@
    "non_negative": 1
   },
   {
-   "fieldname": "section_break_8",
+   "fieldname": "tab_break_specifications",
+   "fieldtype": "Tab Break",
+   "label": "Specifications"
+  },
+  {
+   "fieldname": "section_break_unit_specs",
    "fieldtype": "Section Break",
-   "label": "Rental Information"
+   "label": "Unit Specifications"
+  },
+  {
+   "fieldname": "bedrooms",
+   "fieldtype": "Int",
+   "label": "Bedrooms",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "bathrooms",
+   "fieldtype": "Float",
+   "label": "Bathrooms",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "parking_spaces",
+   "fieldtype": "Int",
+   "label": "Parking Spaces",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_specs_1",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "monthly_rent",
@@ -113,31 +161,60 @@
    "description": "Late payment fee"
   },
   {
-   "fieldname": "column_break_12",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "bedrooms",
-   "fieldtype": "Int",
-   "label": "Bedrooms",
-   "non_negative": 1
-  },
-  {
-   "fieldname": "bathrooms",
-   "fieldtype": "Float",
-   "label": "Bathrooms",
-   "non_negative": 1
-  },
-  {
-   "fieldname": "parking_spaces",
-   "fieldtype": "Int",
-   "label": "Parking Spaces",
-   "non_negative": 1
-  },
-  {
-   "fieldname": "section_break_16",
+   "fieldname": "section_break_unit_features",
    "fieldtype": "Section Break",
-   "label": "Current Lease Information"
+   "label": "Unit Features"
+  },
+  {
+   "fieldname": "unit_features_html",
+   "fieldtype": "HTML",
+   "label": "Features Overview",
+   "options": "<div id=\"unit-features-dashboard\">Loading unit features...</div>"
+  },
+  {
+   "fieldname": "tab_break_financial",
+   "fieldtype": "Tab Break",
+   "label": "Financial Terms"
+  },
+  {
+   "fieldname": "section_break_rental_rates",
+   "fieldtype": "Section Break",
+   "label": "Rental Rates"
+  },
+  {
+   "fieldname": "rental_rates_html",
+   "fieldtype": "HTML",
+   "label": "Rate Analysis",
+   "options": "<div id=\"rental-rates-dashboard\">Loading rental rate analysis...</div>"
+  },
+  {
+   "fieldname": "section_break_financial_summary",
+   "fieldtype": "Section Break",
+   "label": "Financial Summary"
+  },
+  {
+   "fieldname": "financial_summary_html",
+   "fieldtype": "HTML",
+   "label": "Financial Overview",
+   "options": "<div id=\"unit-financial-summary\">Loading financial summary...</div>"
+  },
+  {
+   "fieldname": "tab_break_lease",
+   "fieldtype": "Tab Break",
+   "label": "Lease Information"
+  },
+  {
+   "fieldname": "section_break_current_lease",
+   "fieldtype": "Section Break",
+   "label": "Current Lease"
+  },
+  {
+   "fieldname": "current_tenant",
+   "fieldtype": "Link",
+   "label": "Current Tenant",
+   "options": "Tenant",
+   "read_only": 1,
+   "description": "Automatically updated from active contract"
   },
   {
    "fieldname": "lease_start_date",
@@ -154,16 +231,42 @@
    "description": "Automatically updated from active contract"
   },
   {
-   "fieldname": "current_tenant",
-   "fieldtype": "Link",
-   "label": "Current Tenant",
-   "options": "Tenant",
-   "read_only": 1,
-   "description": "Automatically updated from active contract"
+   "fieldname": "column_break_lease_1",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "column_break_20",
-   "fieldtype": "Column Break"
+   "fieldname": "lease_status_html",
+   "fieldtype": "HTML",
+   "label": "Lease Status",
+   "options": "<div id=\"lease-status-dashboard\">Loading lease status...</div>"
+  },
+  {
+   "fieldname": "section_break_lease_history",
+   "fieldtype": "Section Break",
+   "label": "Lease History"
+  },
+  {
+   "fieldname": "lease_history_html",
+   "fieldtype": "HTML",
+   "label": "Historical Leases",
+   "options": "<div id=\"lease-history-dashboard\">Loading lease history...</div>"
+  },
+  {
+   "fieldname": "tab_break_maintenance",
+   "fieldtype": "Tab Break",
+   "label": "Maintenance"
+  },
+  {
+   "fieldname": "section_break_maintenance_info",
+   "fieldtype": "Section Break",
+   "label": "Maintenance Information"
+  },
+  {
+   "fieldname": "maintenance_status",
+   "fieldtype": "Select",
+   "label": "Maintenance Status",
+   "options": "Good\nNeeds Attention\nScheduled\nIn Progress\nCompleted",
+   "default": "Good"
   },
   {
    "fieldname": "last_maintenance_date",
@@ -176,16 +279,35 @@
    "label": "Next Maintenance Date"
   },
   {
-   "fieldname": "maintenance_status",
-   "fieldtype": "Select",
-   "label": "Maintenance Status",
-   "options": "Good\nNeeds Attention\nScheduled\nIn Progress\nCompleted",
-   "default": "Good"
+   "fieldname": "column_break_maintenance_1",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "section_break_24",
+   "fieldname": "maintenance_schedule_html",
+   "fieldtype": "HTML",
+   "label": "Maintenance Schedule",
+   "options": "<div id=\"maintenance-schedule-dashboard\">Loading maintenance schedule...</div>"
+  },
+  {
+   "fieldname": "section_break_maintenance_history",
    "fieldtype": "Section Break",
-   "label": "Additional Information"
+   "label": "Maintenance History"
+  },
+  {
+   "fieldname": "maintenance_history_html",
+   "fieldtype": "HTML",
+   "label": "Maintenance Records",
+   "options": "<div id=\"maintenance-history-dashboard\">Loading maintenance history...</div>"
+  },
+  {
+   "fieldname": "tab_break_details",
+   "fieldtype": "Tab Break",
+   "label": "Additional Details"
+  },
+  {
+   "fieldname": "section_break_description",
+   "fieldtype": "Section Break",
+   "label": "Unit Description"
   },
   {
    "fieldname": "description",
@@ -201,6 +323,17 @@
    "fieldname": "notes",
    "fieldtype": "Text",
    "label": "Notes"
+  },
+  {
+   "fieldname": "section_break_unit_gallery",
+   "fieldtype": "Section Break",
+   "label": "Unit Gallery"
+  },
+  {
+   "fieldname": "unit_gallery_html",
+   "fieldtype": "HTML",
+   "label": "Unit Images",
+   "options": "<div id=\"unit-gallery-dashboard\">Loading unit gallery...</div>"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -242,3 +375,4 @@
  "states": [],
  "track_changes": 1
 }
+

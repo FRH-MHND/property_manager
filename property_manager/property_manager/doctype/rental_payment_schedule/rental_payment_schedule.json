@@ -9,28 +9,41 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "schedule_status",
+  "tab_break_contract",
   "rental_contract",
   "tenant",
-  "column_break_4",
+  "column_break_contract_1",
   "property",
   "rental_unit",
-  "schedule_status",
-  "section_break_8",
+  "section_break_schedule_info",
   "start_date",
   "end_date",
+  "column_break_schedule_1",
   "payment_frequency",
-  "column_break_12",
-  "total_rent_amount",
   "payments_count",
+  "tab_break_financial",
+  "section_break_amounts",
+  "total_rent_amount",
   "paid_amount",
+  "column_break_financial_1",
   "outstanding_amount",
-  "section_break_17",
+  "payment_completion_rate",
+  "section_break_financial_summary",
+  "financial_summary_html",
+  "tab_break_payments",
+  "section_break_payment_schedule",
   "payment_schedules",
-  "section_break_19",
+  "section_break_payment_actions",
+  "payment_actions_html",
+  "tab_break_system",
+  "section_break_system_info",
   "created_date",
-  "last_updated",
-  "column_break_22",
   "created_by",
+  "column_break_system_1",
+  "last_updated",
+  "modified_by",
+  "section_break_notes",
   "notes"
  ],
  "fields": [
@@ -40,6 +53,20 @@
    "label": "Naming Series",
    "options": "RPS-.YYYY.-",
    "reqd": 1
+  },
+  {
+   "fieldname": "schedule_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Schedule Status",
+   "options": "Draft\nActive\nCompleted\nCancelled\nOverdue",
+   "reqd": 1,
+   "default": "Draft"
+  },
+  {
+   "fieldname": "tab_break_contract",
+   "fieldtype": "Tab Break",
+   "label": "Contract Details"
   },
   {
    "fieldname": "rental_contract",
@@ -58,7 +85,7 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_4",
+   "fieldname": "column_break_contract_1",
    "fieldtype": "Column Break"
   },
   {
@@ -77,16 +104,7 @@
    "read_only": 1
   },
   {
-   "fieldname": "schedule_status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Schedule Status",
-   "options": "Draft\nActive\nCompleted\nCancelled\nOverdue",
-   "reqd": 1,
-   "default": "Draft"
-  },
-  {
-   "fieldname": "section_break_8",
+   "fieldname": "section_break_schedule_info",
    "fieldtype": "Section Break",
    "label": "Schedule Information"
   },
@@ -103,21 +121,14 @@
    "read_only": 1
   },
   {
+   "fieldname": "column_break_schedule_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "payment_frequency",
    "fieldtype": "Select",
    "label": "Payment Frequency",
    "options": "Monthly\nWeekly\nBi-weekly\nQuarterly\nAnnually",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_12",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "total_rent_amount",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Total Rent Amount",
    "read_only": 1
   },
   {
@@ -127,10 +138,31 @@
    "read_only": 1
   },
   {
+   "fieldname": "tab_break_financial",
+   "fieldtype": "Tab Break",
+   "label": "Financial Summary"
+  },
+  {
+   "fieldname": "section_break_amounts",
+   "fieldtype": "Section Break",
+   "label": "Payment Amounts"
+  },
+  {
+   "fieldname": "total_rent_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Rent Amount",
+   "read_only": 1
+  },
+  {
    "fieldname": "paid_amount",
    "fieldtype": "Currency",
    "label": "Paid Amount",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_financial_1",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "outstanding_amount",
@@ -139,9 +171,31 @@
    "read_only": 1
   },
   {
-   "fieldname": "section_break_17",
+   "fieldname": "payment_completion_rate",
+   "fieldtype": "Percent",
+   "label": "Payment Completion Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_financial_summary",
    "fieldtype": "Section Break",
+   "label": "Financial Overview"
+  },
+  {
+   "fieldname": "financial_summary_html",
+   "fieldtype": "HTML",
+   "label": "Financial Summary",
+   "options": "<div id=\"financial-summary-dashboard\">Loading financial summary...</div>"
+  },
+  {
+   "fieldname": "tab_break_payments",
+   "fieldtype": "Tab Break",
    "label": "Payment Schedule"
+  },
+  {
+   "fieldname": "section_break_payment_schedule",
+   "fieldtype": "Section Break",
+   "label": "Payment Schedule Details"
   },
   {
    "fieldname": "payment_schedules",
@@ -151,9 +205,25 @@
    "reqd": 1
   },
   {
-   "fieldname": "section_break_19",
+   "fieldname": "section_break_payment_actions",
    "fieldtype": "Section Break",
-   "label": "Additional Information"
+   "label": "Payment Management"
+  },
+  {
+   "fieldname": "payment_actions_html",
+   "fieldtype": "HTML",
+   "label": "Payment Actions",
+   "options": "<div id=\"payment-actions-dashboard\">Loading payment actions...</div>"
+  },
+  {
+   "fieldname": "tab_break_system",
+   "fieldtype": "Tab Break",
+   "label": "System Information"
+  },
+  {
+   "fieldname": "section_break_system_info",
+   "fieldtype": "Section Break",
+   "label": "System Information"
   },
   {
    "fieldname": "created_date",
@@ -162,21 +232,33 @@
    "read_only": 1
   },
   {
+   "fieldname": "created_by",
+   "fieldtype": "Link",
+   "label": "Created By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_system_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "last_updated",
    "fieldtype": "Datetime",
    "label": "Last Updated",
    "read_only": 1
   },
   {
-   "fieldname": "column_break_22",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "created_by",
+   "fieldname": "modified_by",
    "fieldtype": "Link",
-   "label": "Created By",
+   "label": "Modified By",
    "options": "User",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes & Comments"
   },
   {
    "fieldname": "notes",
@@ -226,4 +308,4 @@
  "states": [],
  "track_changes": 1
 }
-    
+
