@@ -29,7 +29,8 @@ app_license = "MIT"
 # include js in doctype views
 doctype_js = {
     "Rental Contract": "public/js/rental_contract.js",
-    "Rent Schedule": "public/js/rent_schedule.js"
+    "Rent Schedule": "public/js/rent_schedule.js",
+    "Rental Payment Schedule": "public/js/payment_schedule_enhancements.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -56,12 +57,12 @@ doctype_js = {
 # ------------
 
 # before_install = "property_manager.install.before_install"
-# after_install = "property_manager.install.after_install"
+after_install = "property_manager.install.after_install"
 
 # Uninstallation
 # ------------
 
-# before_uninstall = "property_manager.uninstall.before_uninstall"
+before_uninstall = "property_manager.install.before_uninstall"
 # after_uninstall = "property_manager.uninstall.after_uninstall"
 
 # Desk Notifications
@@ -100,6 +101,10 @@ doc_events = {
     },
     "Rent Schedule": {
         "on_update": "property_manager.property_manager.doctype.rent_schedule.rent_schedule.create_sales_invoice_on_payment"
+    },
+    "Payment Entry": {
+        "on_submit": "property_manager.utils.payment_entry.link_to_payment_schedule",
+        "on_cancel": "property_manager.utils.payment_entry.unlink_from_payment_schedule"
     }
 }
 
@@ -180,4 +185,3 @@ scheduler_events = {
 # auth_hooks = [
 #	"property_manager.auth.validate"
 # ]
-
