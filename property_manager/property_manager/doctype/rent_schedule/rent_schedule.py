@@ -350,3 +350,47 @@ def record_payment(rent_schedule_name, amount_paid, payment_date=None, payment_m
 	schedule_doc.save()
 	
 	return schedule_doc.get_payment_summary()
+
+def create_sales_invoice_on_payment(doc, method):
+	"""Create sales invoice when payment is recorded"""
+	if doc.invoice_status == "Not Created" and doc.amount_paid and doc.amount_paid > 0:
+		try:
+			# Create sales invoice
+			invoice = frappe.get_doc({
+				"doctype": "Sales Invoice",
+				"customer": doc.tenant,
+				"due_date": doc.due_date,
+				"items": [{
+					"item_code": "Rent",
+					"qty": 1,
+					"rate": doc.rent_amount,
+					"amount": doc.rent_amount,
+					"description": f"Rent for {doc.rental_unit} - Due: {doc.due_date}"
+				}]
+			})
+			
+			# Add late fee if applicable
+			if doc.late_fee_amount and doc.late_fee_amount > 0:
+				invoice.append("items", {
+					"item_code": "Late Fee",
+					"qty": 1,
+					"rate": doc.late_fee_amount,
+					"amount": doc.late_fee_amount,
+					"description": f"Late fee for overdue rent - {doc.rental_unit}"
+				})
+			
+			invoice.insert()
+			
+			# Update rent schedule with invoice reference
+			doc.invoice_reference = invoice.name
+			doc.invoice_status = "Draft"
+			doc.invoice_date = invoice.creation
+			
+		except Exception as e:
+			frappe.log_error(f"Error creating sales invoice for rent schedule {doc.name}: {str(e)}")
+
+def generate_monthly_schedules():
+	"""Scheduled task to generate monthly rent schedules for active contracts"""
+	# This function can be used to auto-generate schedules for new months
+	# if contracts have auto-renewal enabled
+	pass

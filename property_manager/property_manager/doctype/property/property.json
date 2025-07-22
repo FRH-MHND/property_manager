@@ -19,7 +19,8 @@
   "occupied_units",
   "occupancy_rate",
   "section_break_performance",
-  "property_performance_html",
+  "monthly_rental_income",
+  "total_expenses",
   "tab_break_location",
   "section_break_address",
   "address",
@@ -29,7 +30,8 @@
   "postal_code",
   "country",
   "section_break_location_map",
-  "location_map_html",
+  "latitude",
+  "longitude",
   "tab_break_management",
   "section_break_property_manager",
   "property_manager",
@@ -40,7 +42,8 @@
   "owner_contact",
   "owner_email",
   "section_break_management_summary",
-  "management_summary_html",
+  "management_notes",
+  "emergency_contact",
   "tab_break_financial",
   "section_break_purchase_info",
   "purchase_price",
@@ -49,13 +52,15 @@
   "current_market_value",
   "last_valuation_date",
   "section_break_financial_analysis",
-  "financial_analysis_html",
+  "net_operating_income",
+  "cap_rate",
   "tab_break_details",
   "section_break_description",
   "description",
   "amenities",
   "section_break_property_images",
-  "property_images_html"
+  "property_images",
+  "key_features"
  ],
  "fields": [
   {
@@ -134,10 +139,36 @@
    "label": "Property Performance"
   },
   {
-   "fieldname": "property_performance_html",
-   "fieldtype": "HTML",
-   "label": "Performance Dashboard",
-   "options": "<div id=\"property-performance-dashboard\">Loading property performance...</div>"
+   "fieldname": "monthly_rental_income",
+   "fieldtype": "Currency",
+   "label": "Monthly Rental Income",
+   "read_only": 1,
+   "description": "Current monthly rental income from all units"
+  },
+  {
+   "fieldname": "potential_monthly_income",
+   "fieldtype": "Currency", 
+   "label": "Potential Monthly Income",
+   "read_only": 1,
+   "description": "Maximum possible monthly income if all units occupied"
+  },
+  {
+   "fieldname": "column_break_performance_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vacancy_rate",
+   "fieldtype": "Percent",
+   "label": "Vacancy Rate",
+   "read_only": 1,
+   "description": "Percentage of units currently vacant"
+  },
+  {
+   "fieldname": "average_rent_per_unit",
+   "fieldtype": "Currency",
+   "label": "Average Rent Per Unit",
+   "read_only": 1,
+   "description": "Average monthly rent across all units"
   },
   {
    "fieldname": "tab_break_location",
@@ -185,13 +216,29 @@
   {
    "fieldname": "section_break_location_map",
    "fieldtype": "Section Break",
-   "label": "Location Map"
+   "label": "Location Details"
   },
   {
-   "fieldname": "location_map_html",
-   "fieldtype": "HTML",
-   "label": "Map View",
-   "options": "<div id=\"property-location-map\">Loading location map...</div>"
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "description": "GPS latitude coordinate"
+  },
+  {
+   "fieldname": "longitude", 
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "description": "GPS longitude coordinate"
+  },
+  {
+   "fieldname": "column_break_location_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "nearby_landmarks",
+   "fieldtype": "Small Text",
+   "label": "Nearby Landmarks",
+   "description": "Notable locations, schools, hospitals, etc."
   },
   {
    "fieldname": "tab_break_management",
@@ -242,13 +289,35 @@
   {
    "fieldname": "section_break_management_summary",
    "fieldtype": "Section Break",
-   "label": "Management Summary"
+   "label": "Management Notes"
   },
   {
-   "fieldname": "management_summary_html",
-   "fieldtype": "HTML",
-   "label": "Management Overview",
-   "options": "<div id=\"property-management-summary\">Loading management summary...</div>"
+   "fieldname": "management_notes",
+   "fieldtype": "Text",
+   "label": "Management Notes",
+   "description": "Important notes about property management"
+  },
+  {
+   "fieldname": "maintenance_contact",
+   "fieldtype": "Data",
+   "label": "Maintenance Contact",
+   "description": "Primary maintenance service contact"
+  },
+  {
+   "fieldname": "column_break_management_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "emergency_contact",
+   "fieldtype": "Data",
+   "label": "Emergency Contact",
+   "description": "24/7 emergency contact number"
+  },
+  {
+   "fieldname": "insurance_provider",
+   "fieldtype": "Data",
+   "label": "Insurance Provider",
+   "description": "Property insurance company"
   },
   {
    "fieldname": "tab_break_financial",
@@ -289,13 +358,39 @@
   {
    "fieldname": "section_break_financial_analysis",
    "fieldtype": "Section Break",
-   "label": "Financial Analysis"
+   "label": "Financial Metrics"
   },
   {
-   "fieldname": "financial_analysis_html",
-   "fieldtype": "HTML",
-   "label": "Financial Dashboard",
-   "options": "<div id=\"property-financial-analysis\">Loading financial analysis...</div>"
+   "fieldname": "total_property_value",
+   "fieldtype": "Currency",
+   "label": "Total Property Value",
+   "read_only": 1,
+   "description": "Current market value + improvements"
+  },
+  {
+   "fieldname": "annual_rental_income",
+   "fieldtype": "Currency",
+   "label": "Annual Rental Income",
+   "read_only": 1,
+   "description": "Total annual rental income potential"
+  },
+  {
+   "fieldname": "column_break_financial_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "yield_percentage",
+   "fieldtype": "Percent",
+   "label": "Rental Yield %",
+   "read_only": 1,
+   "description": "Annual rental income / property value"
+  },
+  {
+   "fieldname": "cap_rate",
+   "fieldtype": "Percent",
+   "label": "Cap Rate %",
+   "read_only": 1,
+   "description": "Net operating income / property value"
   },
   {
    "fieldname": "tab_break_details",
@@ -320,13 +415,35 @@
   {
    "fieldname": "section_break_property_images",
    "fieldtype": "Section Break",
-   "label": "Property Images"
+   "label": "Property Media"
   },
   {
-   "fieldname": "property_images_html",
-   "fieldtype": "HTML",
-   "label": "Property Gallery",
-   "options": "<div id=\"property-images-gallery\">Loading property images...</div>"
+   "fieldname": "property_image",
+   "fieldtype": "Attach Image",
+   "label": "Main Property Image",
+   "description": "Primary image for this property"
+  },
+  {
+   "fieldname": "additional_images",
+   "fieldtype": "Text",
+   "label": "Additional Image URLs",
+   "description": "Comma-separated list of additional image URLs"
+  },
+  {
+   "fieldname": "column_break_media_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "virtual_tour_url",
+   "fieldtype": "Data",
+   "label": "Virtual Tour URL",
+   "description": "Link to virtual tour or video"
+  },
+  {
+   "fieldname": "property_brochure",
+   "fieldtype": "Attach",
+   "label": "Property Brochure",
+   "description": "PDF brochure or marketing material"
   }
  ],
  "index_web_pages_for_search": 1,

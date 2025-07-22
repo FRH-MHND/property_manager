@@ -25,10 +25,17 @@ class Property(Document):
 			
 	def on_update(self):
 		"""Update calculated fields when property is updated"""
-		self.update_unit_counts()
+		# Only run calculations if document is saved (has a name)
+		if self.name and not self.name.startswith("new-"):
+			self.update_unit_counts()
+			self.calculate_financial_metrics()
 		
 	def update_unit_counts(self):
 		"""Update total units, available units, occupied units, and occupancy rate"""
+		# Skip if document doesn't have a proper name yet
+		if not self.name or self.name.startswith("new-"):
+			return
+			
 		# Get total units count
 		total_units = frappe.db.count("Rental Unit", {"property": self.name})
 		
@@ -44,17 +51,60 @@ class Property(Document):
 			"unit_status": "Occupied"
 		})
 		
-		# Calculate occupancy rate
+		# Calculate occupancy rate and vacancy rate
 		occupancy_rate = 0
+		vacancy_rate = 0
 		if total_units > 0:
 			occupancy_rate = (occupied_units / total_units) * 100
+			vacancy_rate = (available_units / total_units) * 100
 			
 		# Update the fields
 		frappe.db.set_value("Property", self.name, {
 			"total_units": total_units,
 			"available_units": available_units,
 			"occupied_units": occupied_units,
-			"occupancy_rate": occupancy_rate
+			"occupancy_rate": occupancy_rate,
+			"vacancy_rate": vacancy_rate
+		})
+		
+	def calculate_financial_metrics(self):
+		"""Calculate financial performance metrics"""
+		# Skip if document doesn't have a proper name yet
+		if not self.name or self.name.startswith("new-"):
+			return
+			
+		# Get rental income data
+		monthly_income = self.get_monthly_rental_income()
+		potential_income = self.get_potential_monthly_income()
+		annual_income = monthly_income * 12
+		
+		# Calculate average rent
+		average_rent = 0
+		total_units = self.total_units or 0
+		if total_units > 0:
+			total_rent = sum(frappe.db.get_value("Rental Unit", unit.name, "monthly_rent") or 0 
+							for unit in frappe.get_all("Rental Unit", {"property": self.name}))
+			average_rent = total_rent / total_units if total_units > 0 else 0
+		
+		# Calculate yield and cap rate
+		property_value = self.current_market_value or self.purchase_price or 0
+		yield_percentage = 0
+		cap_rate = 0
+		
+		if property_value > 0:
+			yield_percentage = (annual_income / property_value) * 100
+			# Cap rate calculation (simplified - would need operating expenses for accurate calculation)
+			cap_rate = yield_percentage  # Using yield as approximation
+		
+		# Update financial fields
+		frappe.db.set_value("Property", self.name, {
+			"monthly_rental_income": monthly_income,
+			"potential_monthly_income": potential_income,
+			"annual_rental_income": annual_income,
+			"average_rent_per_unit": average_rent,
+			"total_property_value": property_value,
+			"yield_percentage": yield_percentage,
+			"cap_rate": cap_rate
 		})
 		
 	def get_available_units(self):
@@ -79,10 +129,20 @@ class Property(Document):
 		)
 		
 	def get_monthly_rental_income(self):
-		"""Calculate total monthly rental income from all occupied units"""
-		occupied_units = self.get_occupied_units()
+		"""Calculate current monthly rental income from all occupied units"""
+		occupied_units = frappe.get_all("Rental Unit", 
+			filters={"property": self.name, "unit_status": "Occupied"},
+			fields=["monthly_rent"])
 		total_income = sum(unit.monthly_rent or 0 for unit in occupied_units)
 		return total_income
+		
+	def get_potential_monthly_income(self):
+		"""Calculate potential monthly rental income from all units"""
+		all_units = frappe.get_all("Rental Unit", 
+			filters={"property": self.name},
+			fields=["monthly_rent"])
+		potential_income = sum(unit.monthly_rent or 0 for unit in all_units)
+		return potential_income
 		
 	def get_annual_rental_income(self):
 		"""Calculate total annual rental income"""

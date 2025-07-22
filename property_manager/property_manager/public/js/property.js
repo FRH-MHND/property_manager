@@ -136,7 +136,8 @@ function render_property_performance(frm, data) {
         </div>
     `;
     
-    frm.fields_dict.property_performance_html.$wrapper.html(html);
+    // Note: property_performance_html field has been replaced with practical fields
+    // This dashboard content is now handled by the form's standard field rendering
 }
 
 function load_management_summary(frm) {
@@ -180,7 +181,8 @@ function load_management_summary(frm) {
         </div>
     `;
     
-    frm.fields_dict.management_summary_html.$wrapper.html(html);
+    // Note: management_summary_html field has been replaced with practical fields
+    // This dashboard content is now handled by the form's standard field rendering
 }
 
 function load_financial_analysis(frm) {
@@ -251,7 +253,8 @@ function load_financial_analysis(frm) {
         </div>
     `;
     
-    frm.fields_dict.financial_analysis_html.$wrapper.html(html);
+    // Note: financial_analysis_html field has been replaced with practical fields
+    // This dashboard content is now handled by the form's standard field rendering
 }
 
 function load_location_map(frm) {
@@ -276,7 +279,8 @@ function load_location_map(frm) {
         </div>
     `;
     
-    frm.fields_dict.location_map_html.$wrapper.html(html);
+    // Note: location_map_html field has been replaced with practical fields
+    // This dashboard content is now handled by the form's standard field rendering
 }
 
 function load_property_images(frm) {
@@ -301,7 +305,8 @@ function load_property_images(frm) {
         </div>
     `;
     
-    frm.fields_dict.property_images_html.$wrapper.html(html);
+    // Note: property_images_html field has been replaced with practical fields
+    // This dashboard content is now handled by the form's standard field rendering
 }
 
 function update_property_tab_badges(frm) {

@@ -66,9 +66,13 @@ class RentalContract(Document):
 		if self.payment_frequency == "Monthly":
 			self.rent_amount_per_frequency = self.monthly_rent
 		elif self.payment_frequency == "Weekly":
-			self.rent_amount_per_frequency = self.monthly_rent / 4.33  # Average weeks per month
+			# Average weeks per month (52 weeks / 12 months = 4.33)
+			WEEKS_PER_MONTH = 4.33
+			self.rent_amount_per_frequency = self.monthly_rent / WEEKS_PER_MONTH
 		elif self.payment_frequency == "Bi-weekly":
-			self.rent_amount_per_frequency = self.monthly_rent / 2.17  # Average bi-weeks per month
+			# Average bi-weeks per month (26 bi-weeks / 12 months = 2.17)
+			BIWEEKS_PER_MONTH = 2.17
+			self.rent_amount_per_frequency = self.monthly_rent / BIWEEKS_PER_MONTH
 		elif self.payment_frequency == "Quarterly":
 			self.rent_amount_per_frequency = self.monthly_rent * 3
 		elif self.payment_frequency == "Annually":
@@ -108,9 +112,10 @@ class RentalContract(Document):
 			try:
 				unit_doc = frappe.get_doc("Rental Unit", self.rental_unit)
 				unit_doc.mark_as_occupied(self)
-			except:
-				# If unit update fails, continue with contract submission
-				pass
+			except frappe.DoesNotExistError:
+				frappe.log_error(f"Rental Unit {self.rental_unit} not found", "Contract Submission Error")
+			except Exception as e:
+				frappe.log_error(f"Error updating rental unit: {str(e)}", "Contract Submission Error")
 			
 		# Set contract as active
 		self.contract_status = "Active"

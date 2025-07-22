@@ -156,7 +156,8 @@ function load_contract_summary_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.contract_summary_html.$wrapper.html(html);
+    // HTML field contract_summary_html has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function load_contract_financial_analysis(frm) {
@@ -264,7 +265,8 @@ function load_contract_financial_analysis(frm) {
         </div>
     `;
     
-    frm.fields_dict.financial_analysis_html.$wrapper.html(html);
+    // HTML field financial_analysis_html has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function load_contract_payment_dashboard(frm) {
@@ -336,7 +338,8 @@ function load_contract_payment_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.payment_dashboard_html.$wrapper.html(html);
+    // HTML field payment_dashboard_html has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function load_contract_lifecycle_dashboard(frm) {
@@ -408,7 +411,8 @@ function load_contract_lifecycle_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.contract_lifecycle_html.$wrapper.html(html);
+    // HTML field contract_lifecycle_html has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function load_contract_documents_dashboard(frm) {
@@ -439,7 +443,8 @@ function load_contract_documents_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.contract_documents_html.$wrapper.html(html);
+    // HTML field contract_documents_html has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function update_rental_contract_tab_badges(frm) {

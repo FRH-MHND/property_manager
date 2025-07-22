@@ -150,7 +150,8 @@ function load_tenant_summary_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.tenant_summary_html.$wrapper.html(html);
+    // HTML field has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function load_employment_verification(frm) {
@@ -223,7 +224,8 @@ function load_employment_verification(frm) {
         </div>
     `;
     
-    frm.fields_dict.employment_verification_html.$wrapper.html(html);
+    // HTML field has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function load_business_summary(frm) {
@@ -288,7 +290,8 @@ function load_business_summary(frm) {
         </div>
     `;
     
-    frm.fields_dict.business_summary_html.$wrapper.html(html);
+    // HTML field has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function load_address_map(frm) {
@@ -326,7 +329,8 @@ function load_address_map(frm) {
         </div>
     `;
     
-    frm.fields_dict.address_map_html.$wrapper.html(html);
+    // HTML field has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function load_references_dashboard(frm) {
@@ -392,7 +396,8 @@ function load_references_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.references_html.$wrapper.html(html);
+    // HTML field has been replaced with practical fields
+    // Dashboard content now handled by standard form fields
 }
 
 function update_tenant_tab_badges(frm) {

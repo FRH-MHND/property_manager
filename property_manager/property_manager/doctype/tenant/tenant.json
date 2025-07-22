@@ -27,7 +27,11 @@
   "date_of_birth",
   "id_number",
   "section_break_tenant_summary",
-  "tenant_summary_html",
+  "tenant_status",
+  "application_date",
+  "column_break_summary_1",
+  "preferred_move_in_date",
+  "source_of_referral",
   "tab_break_employment",
   "section_break_employment_info",
   "employment_status",
@@ -38,7 +42,11 @@
   "monthly_income",
   "credit_score",
   "section_break_employment_verification",
-  "employment_verification_html",
+  "employment_verified",
+  "verification_date",
+  "column_break_verification_1",
+  "verified_by",
+  "verification_notes",
   "tab_break_business",
   "section_break_business_info",
   "business_license",
@@ -48,7 +56,11 @@
   "annual_revenue",
   "credit_rating",
   "section_break_business_summary",
-  "business_summary_html",
+  "years_in_business",
+  "number_of_employees",
+  "column_break_business_2",
+  "financial_statements_provided",
+  "business_references",
   "tab_break_address",
   "section_break_current_address",
   "current_address",
@@ -65,7 +77,11 @@
   "previous_postal_code",
   "previous_country",
   "section_break_address_map",
-  "address_map_html",
+  "address_verified",
+  "length_at_current_address",
+  "column_break_address_3",
+  "landlord_name",
+  "landlord_contact",
   "tab_break_emergency",
   "section_break_emergency_contact",
   "emergency_contact_name",
@@ -75,7 +91,13 @@
   "emergency_contact_email",
   "emergency_contact_address",
   "section_break_references",
-  "references_html",
+  "reference1_name",
+  "reference1_contact",
+  "reference1_relationship",
+  "column_break_references_1",
+  "reference2_name",
+  "reference2_contact",
+  "reference2_relationship",
   "section_break_additional",
   "notes",
   "documents_provided"
@@ -193,13 +215,35 @@
   {
    "fieldname": "section_break_tenant_summary",
    "fieldtype": "Section Break",
-   "label": "Tenant Summary"
+   "label": "Tenant Profile"
   },
   {
-   "fieldname": "tenant_summary_html",
-   "fieldtype": "HTML",
-   "label": "Tenant Overview",
-   "options": "<div id=\"tenant-summary-dashboard\">Loading tenant summary...</div>"
+   "fieldname": "tenant_status",
+   "fieldtype": "Select",
+   "label": "Tenant Status",
+   "options": "Prospective\nActive\nFormer\nBlacklisted\nReference Only",
+   "default": "Prospective"
+  },
+  {
+   "fieldname": "application_date",
+   "fieldtype": "Date",
+   "label": "Application Date",
+   "default": "Today"
+  },
+  {
+   "fieldname": "column_break_summary_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "preferred_move_in_date",
+   "fieldtype": "Date",
+   "label": "Preferred Move-in Date"
+  },
+  {
+   "fieldname": "source_of_referral",
+   "fieldtype": "Data",
+   "label": "How did you hear about us?",
+   "description": "Source of referral or marketing channel"
   },
   {
    "fieldname": "tab_break_employment",
@@ -264,10 +308,34 @@
   },
   {
    "depends_on": "eval:doc.tenant_type=='Individual'",
-   "fieldname": "employment_verification_html",
-   "fieldtype": "HTML",
-   "label": "Verification Status",
-   "options": "<div id=\"employment-verification-dashboard\">Loading employment verification...</div>"
+   "fieldname": "employment_verified",
+   "fieldtype": "Check",
+   "label": "Employment Verified",
+   "default": 0
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "verification_date",
+   "fieldtype": "Date",
+   "label": "Verification Date"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "column_break_verification_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "verified_by",
+   "fieldtype": "Data",
+   "label": "Verified By",
+   "description": "Person/Agency who verified employment"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Individual'",
+   "fieldname": "verification_notes",
+   "fieldtype": "Text",
+   "label": "Verification Notes"
   },
   {
    "fieldname": "tab_break_business",
@@ -319,14 +387,37 @@
    "depends_on": "eval:doc.tenant_type=='Corporate'",
    "fieldname": "section_break_business_summary",
    "fieldtype": "Section Break",
-   "label": "Business Summary"
+   "label": "Business Details"
   },
   {
    "depends_on": "eval:doc.tenant_type=='Corporate'",
-   "fieldname": "business_summary_html",
-   "fieldtype": "HTML",
-   "label": "Business Overview",
-   "options": "<div id=\"business-summary-dashboard\">Loading business summary...</div>"
+   "fieldname": "years_in_business",
+   "fieldtype": "Int",
+   "label": "Years in Business"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "number_of_employees",
+   "fieldtype": "Int",
+   "label": "Number of Employees"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "column_break_business_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "financial_statements_provided",
+   "fieldtype": "Check",
+   "label": "Financial Statements Provided",
+   "default": 0
+  },
+  {
+   "depends_on": "eval:doc.tenant_type=='Corporate'",
+   "fieldname": "business_references",
+   "fieldtype": "Text",
+   "label": "Business References"
   },
   {
    "fieldname": "tab_break_address",
@@ -406,13 +497,33 @@
   {
    "fieldname": "section_break_address_map",
    "fieldtype": "Section Break",
-   "label": "Address Map"
+   "label": "Address Verification"
   },
   {
-   "fieldname": "address_map_html",
-   "fieldtype": "HTML",
-   "label": "Location Map",
-   "options": "<div id=\"tenant-address-map\">Loading address map...</div>"
+   "fieldname": "address_verified",
+   "fieldtype": "Check",
+   "label": "Address Verified",
+   "default": 0
+  },
+  {
+   "fieldname": "length_at_current_address",
+   "fieldtype": "Data",
+   "label": "Length at Current Address",
+   "description": "E.g., '2 years', '6 months'"
+  },
+  {
+   "fieldname": "column_break_address_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "landlord_name",
+   "fieldtype": "Data",
+   "label": "Current Landlord Name"
+  },
+  {
+   "fieldname": "landlord_contact",
+   "fieldtype": "Data",
+   "label": "Current Landlord Contact"
   },
   {
    "fieldname": "tab_break_emergency",
@@ -459,10 +570,38 @@
    "label": "References & Background Check"
   },
   {
-   "fieldname": "references_html",
-   "fieldtype": "HTML",
-   "label": "References & Verification",
-   "options": "<div id=\"tenant-references-dashboard\">Loading references and background check...</div>"
+   "fieldname": "reference1_name",
+   "fieldtype": "Data",
+   "label": "Reference 1 - Name"
+  },
+  {
+   "fieldname": "reference1_contact",
+   "fieldtype": "Data",
+   "label": "Reference 1 - Contact"
+  },
+  {
+   "fieldname": "reference1_relationship",
+   "fieldtype": "Data",
+   "label": "Reference 1 - Relationship"
+  },
+  {
+   "fieldname": "column_break_references_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference2_name",
+   "fieldtype": "Data",
+   "label": "Reference 2 - Name"
+  },
+  {
+   "fieldname": "reference2_contact",
+   "fieldtype": "Data",
+   "label": "Reference 2 - Contact"
+  },
+  {
+   "fieldname": "reference2_relationship",
+   "fieldtype": "Data",
+   "label": "Reference 2 - Relationship"
   },
   {
    "fieldname": "section_break_additional",

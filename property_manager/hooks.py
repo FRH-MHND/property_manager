@@ -28,9 +28,13 @@ app_license = "MIT"
 
 # include js in doctype views
 doctype_js = {
+    "Property": "public/js/property.js",
+    "Rental Unit": "public/js/rental_unit.js",
+    "Tenant": "public/js/tenant.js",
     "Rental Contract": "public/js/rental_contract.js",
     "Rent Schedule": "public/js/rent_schedule.js",
-    "Rental Payment Schedule": "public/js/payment_schedule_enhancements.js"
+    "Rental Payment Schedule": "public/js/rental_payment_schedule.js",
+    "Property Dashboard": "public/js/property_dashboard.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -96,9 +100,6 @@ before_uninstall = "property_manager.install.before_uninstall"
 # Hook on document methods and events
 
 doc_events = {
-    "Rental Contract": {
-        "on_submit": "property_manager.property_manager.doctype.rental_contract.rental_contract.generate_rent_schedules"
-    },
     "Rent Schedule": {
         "on_update": "property_manager.property_manager.doctype.rent_schedule.rent_schedule.create_sales_invoice_on_payment"
     },

@@ -597,3 +597,111 @@ def export_to_pdf(payment_data):
         "filename": f"payment_report_{nowdate()}.pdf"
     }
 
+@frappe.whitelist()
+def get_property_performance(property):
+    """
+    Get property performance data for dashboard
+    """
+    try:
+        if not property:
+            return {}
+            
+        # Get property document
+        property_doc = frappe.get_doc("Property", property)
+        
+        # Get rental units for this property
+        units = frappe.get_all(
+            "Rental Unit",
+            filters={"property": property},
+            fields=["name", "unit_status", "monthly_rent", "current_tenant"]
+        )
+        
+        # Calculate unit statistics
+        total_units = len(units)
+        occupied_units = len([u for u in units if u.unit_status == "Occupied"])
+        available_units = len([u for u in units if u.unit_status == "Available"])
+        maintenance_units = len([u for u in units if u.unit_status in ["Maintenance", "Renovation"]])
+        
+        # Calculate occupancy rate
+        occupancy_rate = (occupied_units / total_units * 100) if total_units > 0 else 0
+        
+        # Calculate rental income
+        total_potential_rent = sum([flt(u.monthly_rent) for u in units if u.monthly_rent])
+        current_rent = sum([flt(u.monthly_rent) for u in units if u.unit_status == "Occupied" and u.monthly_rent])
+        
+        # Get active contracts count
+        active_contracts = frappe.db.count("Rental Contract", {
+            "property": property,
+            "contract_status": "Active"
+        })
+        
+        return {
+            "total_units": total_units,
+            "occupied_units": occupied_units,
+            "available_units": available_units,
+            "maintenance_units": maintenance_units,
+            "occupancy_rate": occupancy_rate,
+            "total_potential_rent": total_potential_rent,
+            "current_rent": current_rent,
+            "active_contracts": active_contracts,
+            "rental_efficiency": (current_rent / total_potential_rent * 100) if total_potential_rent > 0 else 0
+        }
+        
+    except Exception as e:
+        frappe.log_error(f"Error getting property performance for {property}: {str(e)}")
+        return {}
+
+@frappe.whitelist()
+def get_property_performance(property):
+    """
+    Get property performance data for dashboard
+    """
+    try:
+        if not property:
+            return {}
+            
+        # Get property document
+        property_doc = frappe.get_doc("Property", property)
+        
+        # Get rental units for this property
+        units = frappe.get_all(
+            "Rental Unit",
+            filters={"property": property},
+            fields=["name", "unit_status", "monthly_rent", "current_tenant"]
+        )
+        
+        # Calculate unit statistics
+        total_units = len(units)
+        occupied_units = len([u for u in units if u.unit_status == "Occupied"])
+        available_units = len([u for u in units if u.unit_status == "Available"])
+        maintenance_units = len([u for u in units if u.unit_status in ["Maintenance", "Renovation"]])
+        
+        # Calculate occupancy rate
+        occupancy_rate = (occupied_units / total_units * 100) if total_units > 0 else 0
+        
+        # Calculate rental income
+        total_potential_rent = sum([flt(u.monthly_rent) for u in units if u.monthly_rent])
+        current_rent = sum([flt(u.monthly_rent) for u in units if u.unit_status == "Occupied" and u.monthly_rent])
+        
+        # Get active contracts count
+        active_contracts = frappe.db.count("Rental Contract", {
+            "property": property,
+            "contract_status": "Active"
+        })
+        
+        return {
+            "total_units": total_units,
+            "occupied_units": occupied_units,
+            "available_units": available_units,
+            "maintenance_units": maintenance_units,
+            "occupancy_rate": occupancy_rate,
+            "total_potential_rent": total_potential_rent,
+            "current_rent": current_rent,
+            "active_contracts": active_contracts,
+            "rental_efficiency": (current_rent / total_potential_rent * 100) if total_potential_rent > 0 else 0
+        }
+        
+    except Exception as e:
+        frappe.log_error(f"Error getting property performance for {property}: {str(e)}")
+        return {}
+

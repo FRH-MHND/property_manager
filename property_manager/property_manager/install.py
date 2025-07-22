@@ -2,7 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
-from property_manager.custom_fields import setup_payment_schedule_customizations
+from property_manager.property_manager.custom_fields import create_payment_schedule_custom_fields
 
 def after_install():
     """
@@ -10,7 +10,7 @@ def after_install():
     """
     try:
         # Create custom fields for Payment Schedule
-        setup_payment_schedule_customizations()
+        create_payment_schedule_custom_fields()
         
         # Create default roles and permissions
         create_property_manager_roles()

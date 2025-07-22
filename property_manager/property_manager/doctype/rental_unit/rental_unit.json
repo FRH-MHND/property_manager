@@ -25,37 +25,64 @@
   "security_deposit",
   "late_fee_amount",
   "section_break_unit_features",
-  "unit_features_html",
+  "balcony",
+  "air_conditioning",
+  "column_break_features_1",
+  "dishwasher",
+  "washing_machine",
   "tab_break_financial",
   "section_break_rental_rates",
-  "rental_rates_html",
+  "previous_rent",
+  "rent_increase_date",
+  "column_break_rates_1",
+  "market_rent",
+  "rent_review_date",
   "section_break_financial_summary",
-  "financial_summary_html",
+  "total_rental_income",
+  "days_vacant",
+  "column_break_financial_1",
+  "occupancy_percentage",
+  "revenue_per_sqft",
   "tab_break_lease",
   "section_break_current_lease",
   "current_tenant",
   "lease_start_date",
   "lease_end_date",
   "column_break_lease_1",
-  "lease_status_html",
+  "lease_auto_renewal",
+  "lease_notice_period",
+  "lease_expiry_reminder",
   "section_break_lease_history",
-  "lease_history_html",
+  "total_lease_contracts",
+  "average_lease_duration",
+  "column_break_history_1",
+  "last_tenant",
+  "tenant_turnover_count",
   "tab_break_maintenance",
   "section_break_maintenance_info",
   "maintenance_status",
   "last_maintenance_date",
   "next_maintenance_date",
   "column_break_maintenance_1",
-  "maintenance_schedule_html",
+  "maintenance_contact",
+  "maintenance_cost_ytd",
+  "warranty_expiry_date",
   "section_break_maintenance_history",
-  "maintenance_history_html",
+  "total_maintenance_requests",
+  "average_response_time",
+  "column_break_maintenance_2",
+  "last_inspection_date",
+  "next_inspection_date",
   "tab_break_details",
   "section_break_description",
   "description",
   "amenities",
   "notes",
   "section_break_unit_gallery",
-  "unit_gallery_html"
+  "unit_image",
+  "floor_plan",
+  "column_break_gallery_1",
+  "additional_images"
  ],
  "fields": [
   {
@@ -166,10 +193,32 @@
    "label": "Unit Features"
   },
   {
-   "fieldname": "unit_features_html",
-   "fieldtype": "HTML",
-   "label": "Features Overview",
-   "options": "<div id=\"unit-features-dashboard\">Loading unit features...</div>"
+   "fieldname": "balcony",
+   "fieldtype": "Check",
+   "label": "Balcony/Terrace",
+   "default": 0
+  },
+  {
+   "fieldname": "air_conditioning",
+   "fieldtype": "Check", 
+   "label": "Air Conditioning",
+   "default": 0
+  },
+  {
+   "fieldname": "column_break_features_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dishwasher",
+   "fieldtype": "Check",
+   "label": "Dishwasher",
+   "default": 0
+  },
+  {
+   "fieldname": "washing_machine",
+   "fieldtype": "Check",
+   "label": "Washing Machine",
+   "default": 0
   },
   {
    "fieldname": "tab_break_financial",
@@ -179,24 +228,70 @@
   {
    "fieldname": "section_break_rental_rates",
    "fieldtype": "Section Break",
-   "label": "Rental Rates"
+   "label": "Rental History"
   },
   {
-   "fieldname": "rental_rates_html",
-   "fieldtype": "HTML",
-   "label": "Rate Analysis",
-   "options": "<div id=\"rental-rates-dashboard\">Loading rental rate analysis...</div>"
+   "fieldname": "previous_rent",
+   "fieldtype": "Currency",
+   "label": "Previous Rent Amount",
+   "description": "Previous rental rate for comparison"
+  },
+  {
+   "fieldname": "rent_increase_date",
+   "fieldtype": "Date",
+   "label": "Last Rent Increase Date"
+  },
+  {
+   "fieldname": "column_break_rates_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "market_rent",
+   "fieldtype": "Currency",
+   "label": "Market Rate",
+   "description": "Current market rental rate for similar units"
+  },
+  {
+   "fieldname": "rent_review_date",
+   "fieldtype": "Date",
+   "label": "Next Rent Review Date"
   },
   {
    "fieldname": "section_break_financial_summary",
    "fieldtype": "Section Break",
-   "label": "Financial Summary"
+   "label": "Financial Metrics"
   },
   {
-   "fieldname": "financial_summary_html",
-   "fieldtype": "HTML",
-   "label": "Financial Overview",
-   "options": "<div id=\"unit-financial-summary\">Loading financial summary...</div>"
+   "fieldname": "total_rental_income",
+   "fieldtype": "Currency",
+   "label": "Total Rental Income YTD",
+   "read_only": 1,
+   "description": "Year-to-date rental income from this unit"
+  },
+  {
+   "fieldname": "days_vacant",
+   "fieldtype": "Int",
+   "label": "Days Vacant This Year",
+   "read_only": 1,
+   "description": "Number of days unit was vacant this year"
+  },
+  {
+   "fieldname": "column_break_financial_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "occupancy_percentage",
+   "fieldtype": "Percent",
+   "label": "Occupancy Rate YTD",
+   "read_only": 1,
+   "description": "Percentage of time occupied this year"
+  },
+  {
+   "fieldname": "revenue_per_sqft",
+   "fieldtype": "Currency",
+   "label": "Revenue per Sq Ft",
+   "read_only": 1,
+   "description": "Monthly rent divided by square footage"
   },
   {
    "fieldname": "tab_break_lease",
@@ -235,10 +330,22 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "lease_status_html",
-   "fieldtype": "HTML",
-   "label": "Lease Status",
-   "options": "<div id=\"lease-status-dashboard\">Loading lease status...</div>"
+   "fieldname": "lease_auto_renewal",
+   "fieldtype": "Check",
+   "label": "Auto Renewal Enabled",
+   "description": "Whether current lease auto-renews"
+  },
+  {
+   "fieldname": "lease_notice_period",
+   "fieldtype": "Int",
+   "label": "Notice Period (Days)",
+   "description": "Required notice period for lease termination"
+  },
+  {
+   "fieldname": "lease_expiry_reminder",
+   "fieldtype": "Date",
+   "label": "Expiry Reminder Date",
+   "description": "Date to send lease expiry reminder"
   },
   {
    "fieldname": "section_break_lease_history",
@@ -246,10 +353,37 @@
    "label": "Lease History"
   },
   {
-   "fieldname": "lease_history_html",
-   "fieldtype": "HTML",
-   "label": "Historical Leases",
-   "options": "<div id=\"lease-history-dashboard\">Loading lease history...</div>"
+   "fieldname": "total_lease_contracts",
+   "fieldtype": "Int",
+   "label": "Total Lease Contracts",
+   "read_only": 1,
+   "description": "Total number of lease contracts for this unit"
+  },
+  {
+   "fieldname": "average_lease_duration",
+   "fieldtype": "Int",
+   "label": "Average Lease Duration (Months)",
+   "read_only": 1,
+   "description": "Average duration of lease contracts"
+  },
+  {
+   "fieldname": "column_break_history_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_tenant",
+   "fieldtype": "Link",
+   "label": "Previous Tenant",
+   "options": "Tenant",
+   "read_only": 1,
+   "description": "Last tenant who occupied this unit"
+  },
+  {
+   "fieldname": "tenant_turnover_count",
+   "fieldtype": "Int",
+   "label": "Tenant Turnover Count",
+   "read_only": 1,
+   "description": "Number of tenant changes"
   },
   {
    "fieldname": "tab_break_maintenance",
@@ -283,10 +417,22 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "maintenance_schedule_html",
-   "fieldtype": "HTML",
-   "label": "Maintenance Schedule",
-   "options": "<div id=\"maintenance-schedule-dashboard\">Loading maintenance schedule...</div>"
+   "fieldname": "maintenance_contact",
+   "fieldtype": "Data",
+   "label": "Maintenance Contact",
+   "description": "Primary maintenance service provider"
+  },
+  {
+   "fieldname": "maintenance_cost_ytd",
+   "fieldtype": "Currency",
+   "label": "Maintenance Cost YTD",
+   "description": "Total maintenance expenses this year"
+  },
+  {
+   "fieldname": "warranty_expiry_date",
+   "fieldtype": "Date",
+   "label": "Warranty Expiry Date",
+   "description": "Unit warranty expiration date"
   },
   {
    "fieldname": "section_break_maintenance_history",
@@ -294,10 +440,34 @@
    "label": "Maintenance History"
   },
   {
-   "fieldname": "maintenance_history_html",
-   "fieldtype": "HTML",
-   "label": "Maintenance Records",
-   "options": "<div id=\"maintenance-history-dashboard\">Loading maintenance history...</div>"
+   "fieldname": "total_maintenance_requests",
+   "fieldtype": "Int",
+   "label": "Total Maintenance Requests",
+   "read_only": 1,
+   "description": "Total number of maintenance requests for this unit"
+  },
+  {
+   "fieldname": "average_response_time",
+   "fieldtype": "Int",
+   "label": "Average Response Time (Hours)",
+   "read_only": 1,
+   "description": "Average time to respond to maintenance requests"
+  },
+  {
+   "fieldname": "column_break_maintenance_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_inspection_date",
+   "fieldtype": "Date",
+   "label": "Last Inspection Date",
+   "description": "Date of last unit inspection"
+  },
+  {
+   "fieldname": "next_inspection_date",
+   "fieldtype": "Date",
+   "label": "Next Inspection Date",
+   "description": "Scheduled date for next inspection"
   },
   {
    "fieldname": "tab_break_details",
@@ -327,13 +497,29 @@
   {
    "fieldname": "section_break_unit_gallery",
    "fieldtype": "Section Break",
-   "label": "Unit Gallery"
+   "label": "Unit Images"
   },
   {
-   "fieldname": "unit_gallery_html",
-   "fieldtype": "HTML",
-   "label": "Unit Images",
-   "options": "<div id=\"unit-gallery-dashboard\">Loading unit gallery...</div>"
+   "fieldname": "unit_image",
+   "fieldtype": "Attach Image",
+   "label": "Main Unit Image",
+   "description": "Primary image of the unit"
+  },
+  {
+   "fieldname": "floor_plan",
+   "fieldtype": "Attach Image",
+   "label": "Floor Plan",
+   "description": "Unit floor plan image"
+  },
+  {
+   "fieldname": "column_break_gallery_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "additional_images",
+   "fieldtype": "Text",
+   "label": "Additional Image URLs",
+   "description": "Comma-separated URLs of additional unit images"
   }
  ],
  "index_web_pages_for_search": 1,

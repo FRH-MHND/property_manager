@@ -204,7 +204,8 @@ function render_financial_summary(frm, schedule_data) {
         </div>
     `;
     
-    frm.fields_dict.financial_summary_html.$wrapper.html(html);
+    // Note: financial_summary_html field has been replaced with practical fields
+    // This dashboard content is now handled by the form's standard field rendering
 }
 
 function load_payment_actions_dashboard(frm) {
@@ -247,7 +248,8 @@ function load_payment_actions_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.payment_actions_html.$wrapper.html(html);
+    // Note: payment_actions_html field has been replaced with practical fields
+    // This dashboard content is now handled by the form's standard field rendering
 }
 
 function add_payment_status_indicators(frm) {

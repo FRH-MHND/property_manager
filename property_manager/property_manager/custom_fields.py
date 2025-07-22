@@ -149,4 +149,4 @@ def setup_payment_schedule_customizations():
 
 # Execute on module load if called directly
 if __name__ == "__main__":
-    setup_payment_schedule_customizations()
+    create_payment_schedule_custom_fields()

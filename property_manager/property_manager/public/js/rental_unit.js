@@ -1,5 +1,6 @@
 // Enhanced JavaScript for Tabbed Rental Unit Doctype
 // Copyright (c) 2025, Farah and contributors
+// Note: All HTML fields have been replaced with practical fields for better data integrity
 
 frappe.ui.form.on('Rental Unit', {
     refresh: function(frm) {
@@ -104,7 +105,7 @@ function load_unit_features_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.unit_features_html.$wrapper.html(html);
+    // Note: unit_features_html field has been replaced with practical fields
 }
 
 function load_rental_rates_analysis(frm) {
@@ -181,7 +182,7 @@ function load_rental_rates_analysis(frm) {
         </div>
     `;
     
-    frm.fields_dict.rental_rates_html.$wrapper.html(html);
+    // Note: rental_rates_html field has been replaced with practical fields
 }
 
 function load_unit_financial_summary(frm) {
@@ -249,7 +250,8 @@ function load_unit_financial_summary(frm) {
         </div>
     `;
     
-    frm.fields_dict.financial_summary_html.$wrapper.html(html);
+    // Note: financial_summary_html field has been replaced with practical fields
+    // This dashboard content is now handled by the form's standard field rendering
 }
 
 function load_lease_status_dashboard(frm) {
@@ -311,7 +313,7 @@ function load_lease_status_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.lease_status_html.$wrapper.html(html);
+    // Note: lease_status_html field has been replaced with practical fields
 }
 
 function load_lease_history_dashboard(frm) {
@@ -336,7 +338,7 @@ function load_lease_history_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.lease_history_html.$wrapper.html(html);
+    // Note: lease_history_html field has been replaced with practical fields
 }
 
 function load_maintenance_schedule_dashboard(frm) {
@@ -397,7 +399,7 @@ function load_maintenance_schedule_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.maintenance_schedule_html.$wrapper.html(html);
+    // Note: maintenance_schedule_html field has been replaced with practical fields
 }
 
 function load_maintenance_history_dashboard(frm) {
@@ -422,7 +424,7 @@ function load_maintenance_history_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.maintenance_history_html.$wrapper.html(html);
+    // Note: maintenance_history_html field has been replaced with practical fields
 }
 
 function load_unit_gallery_dashboard(frm) {
@@ -450,7 +452,7 @@ function load_unit_gallery_dashboard(frm) {
         </div>
     `;
     
-    frm.fields_dict.unit_gallery_html.$wrapper.html(html);
+    // Note: unit_gallery_html field has been replaced with practical fields
 }
 
 function update_rental_unit_tab_badges(frm) {
